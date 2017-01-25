@@ -16,49 +16,43 @@ public class BookServiceImpl implements BookService{
         this.bookRepository = bookRepository;
     }
 
-
     @Override
     public Book addItem(Book book) {
-        return null;
+        return bookRepository.saveAndFlush(book);
     }
 
     @Override
-    public void delete(Integer integer) {
-
+    public void delete(Integer id) {
+        bookRepository.delete(id);
     }
 
     @Override
     public Book editItem(Book book) {
-        return null;
+        return bookRepository.saveAndFlush(book);
     }
 
     @Override
     public List<Book> getAll() {
-        return null;
+        return bookRepository.findAll();
     }
 
     @Override
     public void deleteAll() {
-
+        bookRepository.deleteAll();
     }
 
     @Override
-    public Book find(Integer integer) {
-        return null;
-    }
-
-    @Override
-    public Book getById(int id) {
-        return null;
+    public Book find(Integer id) {
+        return bookRepository.findById(id);
     }
 
     @Override
     public Book getByName(String name) {
-        return null;
+        return bookRepository.findByName(name);
     }
 
     @Override
     public void deleteByName(String name) {
-
+        bookRepository.delete(getByName(name));
     }
 }
