@@ -1,8 +1,8 @@
-package com.el.dao.service.implementations;
+package com.el.dao.CRUD.implementations;
 
 import com.el.dao.entity.Book;
 import com.el.dao.repository.BookRepository;
-import com.el.dao.service.interfaces.BookService;
+import com.el.dao.CRUD.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public Book editItem(Book book) {
-        return bookRepository.saveAndFlush(book);
+        return addItem(book);
     }
 
     @Override
