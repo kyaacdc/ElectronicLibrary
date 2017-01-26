@@ -4,9 +4,11 @@ import com.el.spring.entity.Book;
 import com.el.spring.repository.BookRepository;
 import com.el.spring.service.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BookServiceImpl implements BookService{
 
     private final BookRepository bookRepository;

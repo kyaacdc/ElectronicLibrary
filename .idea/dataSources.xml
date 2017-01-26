@@ -15,5 +15,11 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="electroniclibrary@localhost [2]" uuid="c90217b1-afc0-4386-b70a-5f66dc050d44">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/electroniclibrary</jdbc-url>
+    </data-source>
   </component>
 </project>

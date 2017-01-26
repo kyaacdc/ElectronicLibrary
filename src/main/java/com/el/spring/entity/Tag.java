@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+@Entity
 public class Tag {
         @Id
         @GeneratedValue(generator = "increment")

@@ -1,26 +1,16 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Gradle : ElectronicLibrary : ElectronicLibrary-1.0-SNAPSHOT.war (exploded)">
-    <output-path>$PROJECT_DIR$/build/libs/exploded/ElectronicLibrary-1.0-SNAPSHOT.war</output-path>
-    <properties id="gradle-properties">
-      <options external-project-path="$PROJECT_DIR$">
-        <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
-      </options>
-    </properties>
+  <artifact type="exploded-war" name="ElectronicLibrary_main:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/ElectronicLibrary_main_war_exploded</output-path>
     <root id="root">
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/build/libs/exploded/ElectronicLibrary-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
-      </element>
-      <element id="javaee-facet-resources" facet="ElectronicLibrary_main/web/Web Gradle : ElectronicLibrary-1.0-SNAPSHOT.war" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="ElectronicLibrary_main" />
-          <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Gradle: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Gradle: org.slf4j:slf4j-simple:1.7.21" />
           <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
-          <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
+          <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:5.1.6" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:4.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.data:spring-data-jpa:1.10.5.RELEASE" />
           <element id="library" level="project" name="Gradle: org.hibernate:hibernate-entitymanager:5.2.2.Final" />
@@ -57,9 +47,10 @@
           <element id="library" level="project" name="Gradle: javax.annotation:jsr250-api:1.0" />
           <element id="library" level="project" name="Gradle: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.6/380ef5226de2c85ff3b38cbfefeea881c5fce09d/mysql-connector-java-5.1.6.jar" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="ElectronicLibrary_main/web/Web" />
+      <element id="javaee-facet-resources" facet="ElectronicLibrary_main/web/Web Gradle : ElectronicLibrary-1.0-SNAPSHOT.war" />
     </root>
   </artifact>
 </component>

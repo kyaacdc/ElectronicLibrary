@@ -4,9 +4,11 @@ import com.el.spring.service.interfaces.CommentService;
 import com.el.spring.entity.Comment;
 import com.el.spring.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CommentServiceImpl implements CommentService{
 
     private final CommentRepository commentRepository;

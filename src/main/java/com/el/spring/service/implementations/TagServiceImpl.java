@@ -4,9 +4,11 @@ import com.el.spring.service.interfaces.TagService;
 import com.el.spring.entity.Tag;
 import com.el.spring.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TagServiceImpl implements TagService{
 
     private final TagRepository tagRepository;

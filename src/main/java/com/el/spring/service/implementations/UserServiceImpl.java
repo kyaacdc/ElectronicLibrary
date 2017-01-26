@@ -4,9 +4,11 @@ import com.el.spring.service.interfaces.UserService;
 import com.el.spring.entity.User;
 import com.el.spring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;

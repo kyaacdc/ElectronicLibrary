@@ -7,8 +7,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-    @Query(value = "SELECT b FROM Book b WHERE b.name = :name", nativeQuery = true)
-    Book findByPhoneQuery(@Param("phone") String phone);
+   // @Query(value = "SELECT b FROM Book b WHERE b.name = :name", nativeQuery = true)
+    //Book findByPhoneQuery(@Param("phone") String phone);
 
     Book findByName(String name);
 

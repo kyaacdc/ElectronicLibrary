@@ -4,9 +4,11 @@ import com.el.spring.entity.Category;
 import com.el.spring.repository.CategoryRepository;
 import com.el.spring.service.interfaces.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CategoryServiceImpl implements CategoryService{
 
     private final CategoryRepository categoryRepository;
