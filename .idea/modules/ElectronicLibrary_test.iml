@@ -12,17 +12,21 @@
     <orderEntry type="module" module-name="ElectronicLibrary_main" />
     <orderEntry type="library" name="Gradle: javax.validation:validation-api:1.1.0.Final" level="project" />
     <orderEntry type="library" name="Gradle: mysql:mysql-connector-java:6.0.5" level="project" />
+    <orderEntry type="library" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-webmvc:4.3.4.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-jpa:1.10.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate:hibernate-entitymanager:5.2.2.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-junit:2.0.0.0" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-aop:4.3.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-beans:4.3.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-context:4.3.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-core:4.3.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-expression:4.3.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-web:4.3.4.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-commons:1.12.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-orm:4.2.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-context:4.2.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-aop:4.2.8.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-tx:4.2.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-beans:4.2.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-core:4.2.8.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.aspectj:aspectjrt:1.8.9" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.21" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.21" level="project" />
@@ -35,9 +39,6 @@
     <orderEntry type="library" name="Gradle: org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:java-hamcrest:2.0.0.0" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-jdbc:4.2.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-expression:4.2.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
-    <orderEntry type="library" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" name="Gradle: antlr:antlr:2.7.7" level="project" />
     <orderEntry type="library" name="Gradle: org.jboss:jandex:2.0.0.Final" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml:classmate:1.3.0" level="project" />
@@ -47,6 +48,7 @@
     <orderEntry type="library" name="Gradle: org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec:1.0.0.Beta1" level="project" />
     <orderEntry type="library" name="Gradle: javax.annotation:jsr250-api:1.0" level="project" />
     <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="ElectronicLibrary_main" />
 </module>
