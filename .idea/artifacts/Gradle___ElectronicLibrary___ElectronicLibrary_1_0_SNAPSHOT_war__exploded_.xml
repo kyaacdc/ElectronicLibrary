@@ -20,6 +20,7 @@
           <element id="library" level="project" name="Gradle: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Gradle: org.slf4j:slf4j-simple:1.7.21" />
           <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
+          <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:5.1.6" />
           <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:4.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.data:spring-data-jpa:1.10.5.RELEASE" />
@@ -57,7 +58,12 @@
           <element id="library" level="project" name="Gradle: javax.annotation:jsr250-api:1.0" />
           <element id="library" level="project" name="Gradle: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.6/380ef5226de2c85ff3b38cbfefeea881c5fce09d/mysql-connector-java-5.1.6.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/3.2.10.RELEASE/b925996ca5a7310e3315705cd2b69a15214ee3e1/spring-security-web-3.2.10.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/3.2.10.RELEASE/e8018fab2ada266288d1db83cc4e452de1e2ed1c/spring-security-core-3.2.10.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/3.2.10.RELEASE/c8c9c742067d5a4879bf8db289cb48b60262056a/spring-security-config-3.2.10.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-taglibs/3.2.10.RELEASE/c8e1e3f9ce64e6f9b9105dd1a32840eae160ddea/spring-security-taglibs-3.2.10.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-acl/3.2.10.RELEASE/417714b1b6c7f11cb6c2a5ee4c3738d43353928/spring-security-acl-3.2.10.RELEASE.jar" />
         </element>
       </element>
     </root>

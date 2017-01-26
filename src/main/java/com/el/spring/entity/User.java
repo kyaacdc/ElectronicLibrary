@@ -1,13 +1,25 @@
 package com.el.spring.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
-public class User {
+public class User implements UserDetails{
     @Id
-    private String name;
+    private int id;
 
-    private boolean isAdmin;
+    private String username;
+
+    private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<UserRole> userRoles = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "comment")
@@ -16,26 +28,12 @@ public class User {
     public User() {
     }
 
-    public User(String name, boolean isAdmin, Comment comment) {
-        this.name = name;
-        this.isAdmin = isAdmin;
-        this.comment = comment;
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
     }
 
     public Comment getComment() {
@@ -47,26 +45,40 @@ public class User {
     }
 
     @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", isAdmin=" + isAdmin +
-                ", comment=" + comment +
-                '}';
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> result = new ArrayList<>();
+        for(UserRole userRole: userRoles)
+            result.add(new SimpleGrantedAuthority(userRole.getUserRoleEnum().name()));
+        return null;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        return name.equals(user.name);
+    public String getPassword() {
+        return password;
     }
 
     @Override
-    public int hashCode() {
-        return name.hashCode();
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

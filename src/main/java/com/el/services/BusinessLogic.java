@@ -1,4 +1,4 @@
-package com.el;
+package com.el.services;
 
 public class BusinessLogic {
 }
