@@ -19,9 +19,6 @@
 <body>
 
 <div class="container">
-
-    <a href="<c:url value="/books"/>" target="_blank">Books list</a>
-
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -32,7 +29,12 @@
 
     </c:if>
 
+    <a href="<c:url value="/maincontent"/>" target="_blank"><h1>List Books</h1></a>
+
+    <a href="<c:url value="/books"/>" target="_blank"><h4>Manage Books</h4></a>
+
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>

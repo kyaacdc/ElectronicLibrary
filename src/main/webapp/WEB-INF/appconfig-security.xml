@@ -12,6 +12,9 @@
         <intercept-url pattern="/welcome" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/books" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/maincontent" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <intercept-url pattern="/bookdata/*" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+
 
 
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error"

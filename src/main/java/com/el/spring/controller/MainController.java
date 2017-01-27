@@ -16,59 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class UserController {
+public class MainController {
 
     @Autowired
     private BookService bookService;
-
-    @RequestMapping(value = "books", method = RequestMethod.GET)
-    public String listBooks(Model model){
-        model.addAttribute("book", new Book());
-        model.addAttribute("listBooks", this.bookService.listBooks());
-
-        return "/books";
-    }
-
-    @RequestMapping(value = "/books/add", method = RequestMethod.POST)
-    public String addBook(@ModelAttribute("book") Book book){
-        if(book.getId() == 0){
-            this.bookService.addBook(book);
-        }else {
-            this.bookService.updateBook(book);
-        }
-
-        return "redirect:/books";
-    }
-
-    @RequestMapping("/remove/{id}")
-    public String removeBook(@PathVariable("id") int id){
-        this.bookService.removeBook(id);
-
-        return "redirect:/books";
-    }
-
-    @RequestMapping("edit/{id}")
-    public String editBook(@PathVariable("id") int id, Model model){
-        model.addAttribute("book", this.bookService.getBookById(id));
-        model.addAttribute("listBooks", this.bookService.listBooks());
-
-        return "/WEB-INF/views/books.jsp";
-    }
-
-    @RequestMapping("bookdata/{id}")
-    public String bookData(@PathVariable("id") int id, Model model){
-        model.addAttribute("book", this.bookService.getBookById(id));
-
-        return "/WEB-INF/views/bookdata.jsp";
-    }
-
-
-
-
-
-
-
-
 
     @Autowired
     private UserService userService;
@@ -78,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
+
+    //Operations with Users
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -121,6 +75,58 @@ public class UserController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
         return "admin";
+    }
+
+
+
+    //Operations with Books
+
+    @RequestMapping(value = "books", method = RequestMethod.GET)
+    public String listBooks(Model model){
+        model.addAttribute("book", new Book());
+        model.addAttribute("listBooks", this.bookService.listBooks());
+
+        return "books";
+    }
+
+    @RequestMapping(value = "maincontent", method = RequestMethod.GET)
+    public String listBooksForUsers(Model model){
+        model.addAttribute("book", new Book());
+        model.addAttribute("listBooks", this.bookService.listBooks());
+        return "maincontent";
+    }
+
+    @RequestMapping(value = "/books/add", method = RequestMethod.POST)
+    public String addBook(@ModelAttribute("book") Book book){
+        if(book.getId() == 0){
+            this.bookService.addBook(book);
+        }else {
+            this.bookService.updateBook(book);
+        }
+
+        return "redirect:/books";
+    }
+
+    @RequestMapping("/remove/{id}")
+    public String removeBook(@PathVariable("id") int id){
+        this.bookService.removeBook(id);
+
+        return "redirect:/books";
+    }
+
+    @RequestMapping("edit/{id}")
+    public String editBook(@PathVariable("id") int id, Model model){
+        model.addAttribute("book", this.bookService.getBookById(id));
+        model.addAttribute("listBooks", this.bookService.listBooks());
+
+        return "books";
+    }
+
+    @RequestMapping("bookdata/{id}")
+    public String bookData(@PathVariable("id") int id, Model model){
+        model.addAttribute("book", this.bookService.getBookById(id));
+
+        return "/bookdata";
     }
 
 
