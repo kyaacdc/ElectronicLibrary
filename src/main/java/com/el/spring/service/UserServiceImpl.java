@@ -12,8 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
@@ -29,7 +30,8 @@ public class UserServiceImpl implements UserService{
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Set<Role> roles = new HashSet<>();
         roles.add(roleDao.getOne(1L));
-        userDao.saveAndFlush(user);
+        user.setRoles(roles);
+        userDao.save(user);
     }
 
     @Override
@@ -37,3 +39,4 @@ public class UserServiceImpl implements UserService{
         return userDao.findByUsername(username);
     }
 }
+
