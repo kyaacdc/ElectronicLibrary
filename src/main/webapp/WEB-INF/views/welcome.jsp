@@ -20,6 +20,8 @@
 
 <div class="container">
 
+    <a href="<c:url value="/books"/>" target="_blank">Books list</a>
+
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

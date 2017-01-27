@@ -7,7 +7,6 @@ import com.el.spring.service.BookService;
 import com.el.spring.service.SecurityService;
 import com.el.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,7 +26,7 @@ public class UserController {
         model.addAttribute("book", new Book());
         model.addAttribute("listBooks", this.bookService.listBooks());
 
-        return "/WEB-INF/views/books.jsp";
+        return "/books";
     }
 
     @RequestMapping(value = "/books/add", method = RequestMethod.POST)
