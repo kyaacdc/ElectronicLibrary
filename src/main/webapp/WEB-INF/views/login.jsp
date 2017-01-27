@@ -25,7 +25,7 @@
 
 <body>
 
-<div class="container">
+<div class="alert-success">
 
     <form method="POST" action="${contextPath}/login" class="form-signin">
         <h2 class="form-heading">Log in</h2>
