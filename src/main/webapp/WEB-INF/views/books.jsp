@@ -49,8 +49,11 @@
 <body>
 <a href="/welcome">Back to main menu</a>
 
-<br/>
-<br/>
+<form action="/bookfind">
+    <label for="bookTitle">Search book by Title:</label>
+    <input type="text" title="bookTitle" name="bookTitle" placeholder="bookTitle"/>
+    <input type="submit" value="Search"/>
+</form>
 
 <h1>Book List</h1>
 
@@ -87,15 +90,7 @@
     </table>
 </c:if>
 
-<form action="/bookfind">
-    <label for="bookTitle">Tittle:</label>
-    <input type="text" title="bookTitle" name="bookTitle" placeholder="bookTitle"/>
-    <br/>
-    <br/>
-    <input type="submit" value="Search"/>
-</form>
-
-<h1>Add a Book</h1>
+<h2>Add or Update a Book Info</h2>
 
 <c:url var="addAction" value="/books/add"/>
 
@@ -197,15 +192,21 @@
         <td colspan="2">
             <c:if test="${!empty book.bookTitle}">
                 <input type="submit"
-                       value="<spring:message text="Edit Book"/>"/>
+                       value="<spring:message text="Edit Info"/>"/>
             </c:if>
             <c:if test="${empty book.bookTitle}">
                 <input type="submit"
-                       value="<spring:message text="Add Book"/>"/>
+                       value="<spring:message text="Add Info"/>"/>
             </c:if>
         </td>
         </tr>
     </table>
 </form:form>
+
+<form action="/fileUpload">
+    <h2>Upload new file of Book on Server</h2>
+    <input type="submit" value="Upload file of new Book"/>
+</form>
+
 </body>
 </html>
