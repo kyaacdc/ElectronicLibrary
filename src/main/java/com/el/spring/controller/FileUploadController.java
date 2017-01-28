@@ -1,5 +1,7 @@
 package com.el.spring.controller;
 
+import com.el.spring.controller.assistant.FileValidator;
+import com.el.spring.controller.assistant.FileModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,6 +32,7 @@ public class FileUploadController {
 
     @RequestMapping(value="/fileUpload", method = RequestMethod.POST)
     public String fileUpload(@Validated FileModel file, BindingResult result, ModelMap model) throws IOException {
+
         if (result.hasErrors()) {
             System.out.println("validation errors");
             return "fileUpload";
@@ -37,12 +40,15 @@ public class FileUploadController {
             System.out.println("Fetching file");
             MultipartFile multipartFile = file.getFile();
             //String uploadPath = context.getRealPath("") + File.separator + "temp" + File.separator;
-            String uploadPath = "/home/kya"  + File.separator + "temp" + File.separator;
-            //Now do something with file...
-            FileCopyUtils.copy(file.getFile().getBytes(), new File(uploadPath+file.getFile().getOriginalFilename()));
-            String fileName = multipartFile.getOriginalFilename();
-            model.addAttribute("fileName", fileName);
-            return "success";
+            String uploadPath = "/home/kya" + File.separator + "temp" + File.separator;
+
+
+            if(FileValidator.hasBookFormat(file) || FileValidator.hasValidImageResolution(file)) {
+                FileCopyUtils.copy(file.getFile().getBytes(), new File(uploadPath + file.getFile().getOriginalFilename()));
+                String fileName = multipartFile.getOriginalFilename();
+                model.addAttribute("fileName", fileName);
+                return "success";
+            } else throw new IllegalArgumentException();
         }
     }
 }

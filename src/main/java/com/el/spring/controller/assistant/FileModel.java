@@ -1,8 +1,9 @@
-package com.el.spring.controller;
+package com.el.spring.controller.assistant;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileModel {
+
     private MultipartFile file;
 
     public MultipartFile getFile() {
