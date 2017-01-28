@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -40,6 +42,18 @@ public class BookServiceImpl implements BookService {
     @Transactional
     public Book getBookById(int id) {
         return bookDao.findBookById(id);
+    }
+
+    @Override
+    @Transactional
+    public Book getBookByTitle(String bookTitle) {
+        Optional<Book> book = bookDao.findAll().stream()
+                .filter(a -> a.getBookTitle().equals(bookTitle))
+                .findFirst();
+        if(book.isPresent())
+            return book.get();
+        else
+            throw new NoSuchElementException();
     }
 
     @Override

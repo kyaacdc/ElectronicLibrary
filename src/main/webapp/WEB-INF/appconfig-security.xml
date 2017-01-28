@@ -14,6 +14,7 @@
         <intercept-url pattern="/books" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/maincontent" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <intercept-url pattern="/bookdata/*" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <intercept-url pattern="/bookfind" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
 
 
 

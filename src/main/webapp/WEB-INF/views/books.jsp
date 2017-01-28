@@ -87,6 +87,13 @@
     </table>
 </c:if>
 
+<form action="/bookfind">
+    <label for="bookTitle">Tittle:</label>
+    <input type="text" title="bookTitle" name="bookTitle" placeholder="bookTitle"/>
+    <br/>
+    <br/>
+    <input type="submit" value="Search"/>
+</form>
 
 <h1>Add a Book</h1>
 
