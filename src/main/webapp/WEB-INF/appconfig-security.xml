@@ -30,7 +30,7 @@
     </authentication-manager>
 
     <beans:bean id="userDetailsServiceImpl"
-                class="com.el.spring.service.UserDetailsServiceImpl"></beans:bean>
+                class="com.el.spring.service.impl.UserDetailsServiceImpl"></beans:bean>
 
     <beans:bean id="encoder"
                 class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

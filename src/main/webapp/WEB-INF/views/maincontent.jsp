@@ -60,14 +60,24 @@
             <th width="80">ID</th>
             <th width="120">Title</th>
             <th width="120">Author</th>
-            <th width="120">Price</th>
+            <th width="120">ISBN</th>
+            <th width="80">Description</th>
+            <th width="120">Image</th>
+            <th width="120">Path</th>
+            <th width="120">Likes</th>
+            <th width="120">Dislikes</th>
         </tr>
         <c:forEach items="${listBooks}" var="book">
             <tr>
                 <td>${book.id}</td>
                 <td><a href="/bookdata/${book.id}" target="_blank">${book.bookTitle}</a></td>
                 <td>${book.bookAuthor}</td>
-                <td>${book.price/100}${book.price%100}</td>
+                <td>${book.isbn}</td>
+                <td>${book.description}</td>
+                <td>${book.image}</td>
+                <td>${book.path}</td>
+                <td>${book.likes}</td>
+                <td>${book.dislikes}</td>
             </tr>
         </c:forEach>
     </table>

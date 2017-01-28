@@ -1,7 +1,8 @@
-package com.el.spring.service;
+package com.el.spring.service.impl;
 
 import com.el.spring.daoRepository.BookDao;
 import com.el.spring.entity.Book;
+import com.el.spring.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

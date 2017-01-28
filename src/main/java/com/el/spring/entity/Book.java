@@ -16,8 +16,26 @@ public class Book {
     @Column(name = "BOOK_AUTHOR")
     private String bookAuthor;
 
-    @Column(name = "BOOK_PRICE")
-    private int price;
+    @Column(name = "ISBN")
+    private String isbn;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
+
+    @Column(name = "IMAGE")
+    private String image;
+
+    @Column(name = "PATH")
+    private String path;
+
+    @Column(name = "LIKES")
+    private String likes;
+
+    @Column(name = "DISLIKES")
+    private String dislikes;
+
+    public Book() {
+    }
 
     public int getId() {
         return id;
@@ -43,21 +61,51 @@ public class Book {
         this.bookAuthor = bookAuthor;
     }
 
-    public int getPrice() {
-        return price;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", bookTitle='" + bookTitle + '\'' +
-                ", bookAuthor='" + bookAuthor + '\'' +
-                ", price=" + price +
-                '}';
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getLikes() {
+        return likes;
+    }
+
+    public void setLikes(String likes) {
+        this.likes = likes;
+    }
+
+    public String getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(String dislikes) {
+        this.dislikes = dislikes;
     }
 }

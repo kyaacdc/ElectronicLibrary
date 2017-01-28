@@ -60,7 +60,12 @@
             <th width="80">ID</th>
             <th width="120">Title</th>
             <th width="120">Author</th>
-            <th width="120">Price</th>
+            <th width="120">ISBN</th>
+            <th width="80">Description</th>
+            <th width="120">Image</th>
+            <th width="120">Path</th>
+            <th width="120">Likes</th>
+            <th width="120">Dislikes</th>
             <th width="60">Edit</th>
             <th width="60">Delete</th>
         </tr>
@@ -69,7 +74,12 @@
                 <td>${book.id}</td>
                 <td><a href="/bookdata/${book.id}" target="_blank">${book.bookTitle}</a></td>
                 <td>${book.bookAuthor}</td>
-                <td>${book.price/100}${book.price%100}</td>
+                <td>${book.isbn}</td>
+                <td>${book.description}</td>
+                <td>${book.image}</td>
+                <td>${book.path}</td>
+                <td>${book.likes}</td>
+                <td>${book.dislikes}</td>
                 <td><a href="<c:url value='/edit/${book.id}'/>">Edit</a></td>
                 <td><a href="<c:url value='/remove/${book.id}'/>">Delete</a></td>
             </tr>
@@ -119,25 +129,74 @@
         </tr>
         <tr>
             <td>
-                <form:label path="price">
-                    <spring:message text="Price"/>
+                <form:label path="isbn">
+                    <spring:message text="ISBN"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="price"/>
+                <form:input path="isbn"/>
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <c:if test="${!empty book.bookTitle}">
-                    <input type="submit"
-                           value="<spring:message text="Edit Book"/>"/>
-                </c:if>
-                <c:if test="${empty book.bookTitle}">
-                    <input type="submit"
-                           value="<spring:message text="Add Book"/>"/>
-                </c:if>
+            <td>
+                <form:label path="description">
+                    <spring:message text="Description"/>
+                </form:label>
             </td>
+            <td>
+                <form:input path="description"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form:label path="image">
+                    <spring:message text="Image"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="image"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form:label path="path">
+                    <spring:message text="Path"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="path"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form:label path="likes">
+                    <spring:message text="Likes"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="likes"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form:label path="dislikes">
+                    <spring:message text="Dislikes"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="dislikes"/>
+            </td>
+        </tr>
+        <td colspan="2">
+            <c:if test="${!empty book.bookTitle}">
+                <input type="submit"
+                       value="<spring:message text="Edit Book"/>"/>
+            </c:if>
+            <c:if test="${empty book.bookTitle}">
+                <input type="submit"
+                       value="<spring:message text="Add Book"/>"/>
+            </c:if>
+        </td>
         </tr>
     </table>
 </form:form>

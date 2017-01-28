@@ -1,10 +1,11 @@
-package com.el.spring.service;
+package com.el.spring.service.impl;
 
 
 import com.el.spring.daoRepository.RoleDao;
 import com.el.spring.daoRepository.UserDao;
 import com.el.spring.entity.Role;
 import com.el.spring.entity.User;
+import com.el.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

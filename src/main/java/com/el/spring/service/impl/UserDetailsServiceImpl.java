@@ -1,4 +1,4 @@
-package com.el.spring.service;
+package com.el.spring.service.impl;
 
 import com.el.spring.daoRepository.UserDao;
 import com.el.spring.entity.User;
