@@ -17,6 +17,8 @@
         <intercept-url pattern="/bookdata/*" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <intercept-url pattern="/bookfind" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <intercept-url pattern="/fileUpload" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/users" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/users/*" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/fileDownload" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
 
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error"

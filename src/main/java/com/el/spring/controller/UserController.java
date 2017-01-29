@@ -4,18 +4,11 @@ import com.el.spring.Util.UserValidator;
 import com.el.spring.entity.User;
 import com.el.spring.service.SecurityService;
 import com.el.spring.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 
 @Controller
 public class UserController {
@@ -30,7 +23,7 @@ public class UserController {
     private UserValidator userValidator;
 
 
-    //Operations with Users
+    //Operations with Authentification and Registration
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -75,4 +68,43 @@ public class UserController {
     public String admin(Model model) {
         return "admin";
     }
+
+
+
+    //Operations with users
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public String listUsers(Model model){
+        model.addAttribute("user", new User());
+        model.addAttribute("listUsers", this.userService.listUsers());
+
+        return "/users";
+    }
+
+    @RequestMapping(value = "/users/add", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("user") User user){
+        if(user.getId() == 0){
+            this.userService.addUser(user);
+        }else {
+            this.userService.updateUser(user);
+        }
+
+        return "redirect:/users";
+    }
+
+    @RequestMapping("/users/remove/{id}")
+    public String removeUser(@PathVariable("id") int id){
+        this.userService.removeUser(id);
+
+        return "redirect:/users";
+    }
+
+    @RequestMapping("/users/edit/{id}")
+    public String editUser(@PathVariable("id") int id, Model model){
+        model.addAttribute("user", this.userService.getUserById(id));
+        model.addAttribute("listUsers", this.userService.listUsers());
+
+        return "users";
+    }
+
 }

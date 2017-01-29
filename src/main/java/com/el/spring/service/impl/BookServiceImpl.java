@@ -40,13 +40,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    @Transactional
     public Book getBookById(int id) {
         return bookDao.findBookById(id);
     }
 
     @Override
-    @Transactional
     public Book getExactlyBookByTitle(String bookTitle) {
         Optional<Book> book = bookDao.findAll().stream()
                 .filter(a -> a.getBookTitle().equals(bookTitle))
@@ -67,7 +65,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    @Transactional
     public Set<Book> setBooks() {
         Set<Book> bookSet = new LinkedHashSet<>();
         bookDao.findAll().forEach(bookSet::add);
@@ -75,7 +72,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    @Transactional
     public List<Book> listBookByCriteria(String searchValue, EnumFindCriteria findCriteria) {
 
         String str = "";

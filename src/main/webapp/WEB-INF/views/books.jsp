@@ -102,7 +102,7 @@
     </table>
 </c:if>
 
-<h2>Add or Update a Book Info</h2>
+<h2>Add or Update Book Info</h2>
 
 <form action="/fileDownload">
     <h5>Download file of Book from Server</h5>
@@ -211,6 +211,7 @@
                 <form:input path="dislikes"/>
             </td>
         </tr>
+        <tr>
         <td colspan="2">
             <c:if test="${!empty book.bookTitle}">
                 <input type="submit"

@@ -26,7 +26,7 @@
 <body>
 
 <div class="alert-success">
-
+    <h1>Welcome to Electronic Library</h1>
     <form method="POST" action="${contextPath}/login" class="form-signin">
         <h2 class="form-heading">Log in</h2>
 

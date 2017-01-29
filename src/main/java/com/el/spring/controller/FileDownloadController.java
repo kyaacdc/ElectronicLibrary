@@ -69,7 +69,7 @@ public class FileDownloadController {
         /* "Content-Disposition : inline (but maybe - attachment) " will show viewable types [like images/text/pdf/anything viewable by browser] right on browser
             while others(zip e.g) will be directly downloaded [may provide save as popup, based on your browser setting.]*/
         if(type.equalsIgnoreCase("externalview") || type.equalsIgnoreCase("internalview"))
-            response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() +"\""));
+            response.setHeader("Content-Disposition", String.format("inline ; filename=\"" + file.getName() +"\""));
         else
             response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + file.getName() +"\""));
 
