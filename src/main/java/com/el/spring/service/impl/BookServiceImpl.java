@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -61,5 +60,27 @@ public class BookServiceImpl implements BookService {
     @SuppressWarnings("unchecked")
     public List<Book> listBooks() {
         return bookDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public List<Book> listBookByDescription(String descr) {
+
+        Book book = new Book();
+        book.setBookTitle("Test");
+
+        List<Book> result = new ArrayList<>();
+        List<Book> all = bookDao.findAll();
+        for(Book b: all){
+            String[] split = b.getDescription().split(" ");
+            for (String s: split) {
+                if(s.equals(descr)) {
+                    result.add(b);
+                    break;
+                }
+            }
+        }
+        result.add(book);
+        return result;
     }
 }

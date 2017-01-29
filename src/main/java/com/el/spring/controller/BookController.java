@@ -75,4 +75,20 @@ public class BookController {
 
         return "/bookfind";
     }
+
+    @RequestMapping("/bookfindDescr")
+    public String bookFindByDescription(@RequestParam("description") String description, Model model){
+        try {
+            model.addAttribute("book", new Book());
+            model.addAttribute("listBooks", this.bookService.listBookByDescription(description));
+            //model.addAttribute("listBooks", this.bookService.listBooks());
+
+        } catch (NoSuchElementException e) {
+            return "/notfound";
+        }
+
+        return "maincontent";
+    }
+
+
 }

@@ -55,6 +55,12 @@
     <input type="submit" value="Search"/>
 </form>
 
+<form action="/bookfindDescr">
+    <label for="description">Search book by Description:</label>
+    <input type="text" title="description" name="description" placeholder="description"/>
+    <input type="submit" value="Search"/>
+</form>
+
 <h1>Book List</h1>
 
 <c:if test="${!empty listBooks}">
