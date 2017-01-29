@@ -50,13 +50,19 @@
 <a href="/welcome">Back to main menu</a>
 
 <form action="/bookfind">
-    <label for="bookTitle">Search book by Title:</label>
+    <label for="bookTitle">Exactly Search One book by Title:</label>
+    <input type="text" title="bookTitle" name="bookTitle" placeholder="bookTitle"/>
+    <input type="submit" value="Search"/>
+</form>
+
+<form action="/bookfindTitle">
+    <label for="bookTitle">Search list books by Title:</label>
     <input type="text" title="bookTitle" name="bookTitle" placeholder="bookTitle"/>
     <input type="submit" value="Search"/>
 </form>
 
 <form action="/bookfindDescr">
-    <label for="description">Search book by Description:</label>
+    <label for="description">Search list books by Description:</label>
     <input type="text" title="description" name="description" placeholder="description"/>
     <input type="submit" value="Search"/>
 </form>

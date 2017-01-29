@@ -18,6 +18,9 @@
         <intercept-url pattern="/bookfind" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <intercept-url pattern="/fileUpload" access="hasRole('ROLE_ADMIN')"/>
 
+        <!-- access denied page -->
+        <access-denied-handler error-page="/403" />
+
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error"
                     username-parameter="username" password-parameter="password"/>
 

@@ -3,12 +3,16 @@ package com.el.spring.service.impl;
 import com.el.spring.daoRepository.BookDao;
 import com.el.spring.entity.Book;
 import com.el.spring.service.BookService;
+import com.el.spring.service.impl.enums.EnumFindCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.el.spring.service.impl.enums.EnumFindCriteria.DESCRIPTION;
+import static com.el.spring.service.impl.enums.EnumFindCriteria.TITLE;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -45,7 +49,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public Book getBookByTitle(String bookTitle) {
+    public Book getExactlyBookByTitle(String bookTitle) {
         Optional<Book> book = bookDao.findAll().stream()
                 .filter(a -> a.getBookTitle().equals(bookTitle))
                 .findFirst();
@@ -59,28 +63,48 @@ public class BookServiceImpl implements BookService {
     @Transactional
     @SuppressWarnings("unchecked")
     public List<Book> listBooks() {
-        return bookDao.findAll();
+        List<Book> list = bookDao.findAll();
+        list.sort(Comparator.comparing(Book::getId));
+        return list;
     }
 
     @Override
     @Transactional
-    public List<Book> listBookByDescription(String descr) {
+    public Set<Book> setBooks() {
+        Set<Book> bookSet = new LinkedHashSet<>();
+        bookDao.findAll().forEach(bookSet::add);
+        return bookSet;
+    }
 
+    @Override
+    @Transactional
+    public List<Book> listBookByCriteria(String searchValue, EnumFindCriteria findCriteria) {
+
+        String str = "";
         List<Book> result = new ArrayList<>();
 
         List<Book> all = bookDao.findAll();
         for(Book b: all){
-            String str = b.getDescription();
+            if(findCriteria == TITLE)
+                str = b.getBookTitle();
+            else if(findCriteria == DESCRIPTION)
+                str = b.getDescription();
+            else
+                throw new NoSuchElementException();
+
             if(str != null) {
                 String[] split = str.split(" ");
                 for (String s : split) {
-                    if (s.equals(descr)) {
+                    if (s.equals(searchValue)) {
                         result.add(b);
                         break;
                     }
                 }
             }
         }
+
+        if(result.size() == 0)
+            throw new NoSuchElementException();
 
         return result;
     }

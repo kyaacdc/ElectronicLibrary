@@ -39,16 +39,15 @@ public class FileUploadController {
         } else {
             System.out.println("Fetching file");
             MultipartFile multipartFile = file.getFile();
-            //String uploadPath = context.getRealPath("") + File.separator + "temp" + File.separator;
             String uploadPath = "/home/kya" + File.separator + "temp" + File.separator;
-
 
             if(FileValidator.hasBookFormat(file) || FileValidator.hasValidImageResolution(file)) {
                 FileCopyUtils.copy(file.getFile().getBytes(), new File(uploadPath + file.getFile().getOriginalFilename()));
                 String fileName = multipartFile.getOriginalFilename();
                 model.addAttribute("fileName", fileName);
                 return "success";
-            } else throw new IllegalArgumentException();
+            } else
+                return "imageNotValid";
         }
     }
 }

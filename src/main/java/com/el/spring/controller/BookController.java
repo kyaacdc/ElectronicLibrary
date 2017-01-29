@@ -2,12 +2,16 @@ package com.el.spring.controller;
 
 import com.el.spring.entity.Book;
 import com.el.spring.service.BookService;
+import com.el.spring.service.impl.enums.EnumFindCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
+
+import static com.el.spring.service.impl.enums.EnumFindCriteria.DESCRIPTION;
+import static com.el.spring.service.impl.enums.EnumFindCriteria.TITLE;
 
 @Controller
 public class BookController {
@@ -66,9 +70,9 @@ public class BookController {
     }
 
     @RequestMapping("/bookfind")
-    public String bookFindByTittle(@RequestParam("bookTitle") String bookTitle, Model model){
+    public String exactlyBookFindByTittle(@RequestParam("bookTitle") String bookTitle, Model model){
         try {
-            model.addAttribute("book", this.bookService.getBookByTitle(bookTitle));
+            model.addAttribute("book", this.bookService.getExactlyBookByTitle(bookTitle));
         } catch (NoSuchElementException e) {
             return "/notfound";
         }
@@ -76,13 +80,39 @@ public class BookController {
         return "/bookfind";
     }
 
+    @RequestMapping("/bookfindTitle")
+    public String bookFindByTitle(@RequestParam("bookTitle") String title, Model model){
+        try {
+            model.addAttribute("book", new Book());
+            model.addAttribute("listBooks", this.bookService.listBookByCriteria(title, TITLE));
+        } catch (NoSuchElementException e) {
+            return "/notfound";
+        }
+
+        return "maincontent";
+    }
+
     @RequestMapping("/bookfindDescr")
     public String bookFindByDescription(@RequestParam("description") String description, Model model){
         try {
             model.addAttribute("book", new Book());
-            model.addAttribute("listBooks", this.bookService.listBookByDescription(description));
-            //model.addAttribute("listBooks", this.bookService.listBooks());
+            model.addAttribute("listBooks", this.bookService.listBookByCriteria(description, DESCRIPTION));
+        } catch (NoSuchElementException e) {
+            return "/notfound";
+        }
 
+        return "maincontent";
+    }
+
+    @RequestMapping("/bookfindCriteria")
+    public String bookFindByCriteria
+            (@RequestParam("description") String description, @RequestParam("criteria") int numCriteria, Model model){
+
+        EnumFindCriteria criteria = (numCriteria == 1) ? TITLE : DESCRIPTION;
+
+        try {
+            model.addAttribute("book", new Book());
+            model.addAttribute("listBooks", this.bookService.listBookByCriteria(description, criteria));
         } catch (NoSuchElementException e) {
             return "/notfound";
         }

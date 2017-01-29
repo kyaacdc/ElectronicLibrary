@@ -1,12 +1,12 @@
 package com.el.spring.service;
 
 import com.el.spring.entity.Book;
+import com.el.spring.service.impl.enums.EnumFindCriteria;
 
 import java.util.List;
+import java.util.Set;
 
 public interface BookService {
-
-
 
     void addBook(Book book);
 
@@ -16,9 +16,11 @@ public interface BookService {
 
     Book getBookById(int id);
 
-    Book getBookByTitle(String bookTitle);
+    Book getExactlyBookByTitle(String bookTitle);
 
     List<Book> listBooks();
 
-    List<Book> listBookByDescription(String descr);
+    Set<Book> setBooks();
+
+    List<Book> listBookByCriteria(String searchValue, EnumFindCriteria findCriteria);
 }
