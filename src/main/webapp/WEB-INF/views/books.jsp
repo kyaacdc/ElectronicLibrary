@@ -104,6 +104,16 @@
 
 <h2>Add or Update a Book Info</h2>
 
+<form action="/fileDownload">
+    <h5>Download file of Book from Server</h5>
+    <input type="submit" value="Download file of new Book"/>
+</form>
+
+<form action="/fileUpload">
+    <h5>Upload new file of Book on Server</h5>
+    <input type="submit" value="Upload file of new Book"/>
+</form>
+
 <c:url var="addAction" value="/books/add"/>
 
 <form:form action="${addAction}" commandName="book">
