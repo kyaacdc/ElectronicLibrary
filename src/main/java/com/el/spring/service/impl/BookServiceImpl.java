@@ -66,21 +66,22 @@ public class BookServiceImpl implements BookService {
     @Transactional
     public List<Book> listBookByDescription(String descr) {
 
-        Book book = new Book();
-        book.setBookTitle("Test");
-
         List<Book> result = new ArrayList<>();
+
         List<Book> all = bookDao.findAll();
         for(Book b: all){
-            String[] split = b.getDescription().split(" ");
-            for (String s: split) {
-                if(s.equals(descr)) {
-                    result.add(b);
-                    break;
+            String str = b.getDescription();
+            if(str != null) {
+                String[] split = str.split(" ");
+                for (String s : split) {
+                    if (s.equals(descr)) {
+                        result.add(b);
+                        break;
+                    }
                 }
             }
         }
-        result.add(book);
+
         return result;
     }
 }
