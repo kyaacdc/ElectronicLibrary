@@ -3,14 +3,12 @@ package com.el.spring.service.impl;
 import com.el.spring.daoRepository.BookDao;
 import com.el.spring.entity.Book;
 import com.el.spring.service.BookService;
+import com.el.spring.service.impl.enums.EnumBookSort;
 import com.el.spring.service.impl.enums.EnumFindCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.*;
-import java.util.stream.Collectors;
-
 import static com.el.spring.service.impl.enums.EnumFindCriteria.DESCRIPTION;
 import static com.el.spring.service.impl.enums.EnumFindCriteria.TITLE;
 
@@ -64,7 +62,7 @@ public class BookServiceImpl implements BookService {
     @SuppressWarnings("unchecked")
     public List<Book> listBooks() {
         List<Book> list = bookDao.findAll();
-        list.sort(Comparator.comparing(Book::getId));
+        list.sort(EnumBookSort.SORT_BY_ID);
         return list;
     }
 

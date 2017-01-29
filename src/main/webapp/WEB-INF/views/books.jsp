@@ -215,10 +215,5 @@
     </table>
 </form:form>
 
-<form action="/fileUpload">
-    <h2>Upload new file of Book on Server</h2>
-    <input type="submit" value="Upload file of new Book"/>
-</form>
-
 </body>
 </html>

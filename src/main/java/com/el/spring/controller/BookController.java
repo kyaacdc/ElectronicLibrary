@@ -104,21 +104,4 @@ public class BookController {
         return "maincontent";
     }
 
-    @RequestMapping("/bookfindCriteria")
-    public String bookFindByCriteria
-            (@RequestParam("description") String description, @RequestParam("criteria") int numCriteria, Model model){
-
-        EnumFindCriteria criteria = (numCriteria == 1) ? TITLE : DESCRIPTION;
-
-        try {
-            model.addAttribute("book", new Book());
-            model.addAttribute("listBooks", this.bookService.listBookByCriteria(description, criteria));
-        } catch (NoSuchElementException e) {
-            return "/notfound";
-        }
-
-        return "maincontent";
-    }
-
-
 }
