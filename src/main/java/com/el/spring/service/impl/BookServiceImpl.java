@@ -54,7 +54,7 @@ public class BookServiceImpl implements BookService {
         if(book.isPresent())
             return book.get();
         else
-            throw new NoSuchElementException();
+            throw new  NoSuchElementException();
     }
 
     @Override

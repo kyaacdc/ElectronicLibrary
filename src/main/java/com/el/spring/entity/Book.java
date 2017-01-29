@@ -29,10 +29,10 @@ public class Book {
     private String path;
 
     @Column(name = "LIKES")
-    private String likes;
+    private int likes;
 
     @Column(name = "DISLIKES")
-    private String dislikes;
+    private int dislikes;
 
     public Book() {
     }
@@ -93,19 +93,19 @@ public class Book {
         this.path = path;
     }
 
-    public String getLikes() {
+    public int getLikes() {
         return likes;
     }
 
-    public void setLikes(String likes) {
+    public void setLikes(int likes) {
         this.likes = likes;
     }
 
-    public String getDislikes() {
+    public int getDislikes() {
         return dislikes;
     }
 
-    public void setDislikes(String dislikes) {
+    public void setDislikes(int dislikes) {
         this.dislikes = dislikes;
     }
 }
