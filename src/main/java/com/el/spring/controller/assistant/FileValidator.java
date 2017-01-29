@@ -21,14 +21,19 @@ public class FileValidator {
                 || extension.equals("odt") || extension.equals("pdf") || extension.equals("docx");
     }
 
-    public static boolean hasValidImageResolution(FileModel file) throws IOException {
+    public static boolean hasImageFormat(FileModel file){
         String filename = file.getFile().getOriginalFilename();
         String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length());
+        return extension.equals("jpg") || extension.equals("png") || extension.equals("bmp");
+    }
+
+    public static boolean hasValidImageResolution(FileModel file) throws IOException {
+        String filename = file.getFile().getOriginalFilename();
         File image = new File("/home/kya" + File.separator + "temp" + File.separator + filename);
         FileCopyUtils.copy(file.getFile().getBytes(), image);
         BufferedImage bimg = ImageIO.read(image);
         int width = bimg.getWidth();
         int height= bimg.getHeight();
-        return width < 600 && height < 800 && extension.equals("jpg");
+        return width < 600 && height < 800 && hasImageFormat(file);
     }
 }

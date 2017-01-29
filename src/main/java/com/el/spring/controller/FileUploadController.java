@@ -2,6 +2,8 @@ package com.el.spring.controller;
 
 import com.el.spring.controller.assistant.FileValidator;
 import com.el.spring.controller.assistant.FileModel;
+import com.el.spring.entity.Book;
+import com.el.spring.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,8 +26,14 @@ public class FileUploadController {
     @Autowired
     ServletContext context;
 
+    @Autowired
+    private BookService bookService;
+
+    private Book book;
+
     @RequestMapping(value = "/fileUpload", method = RequestMethod.GET)
-    public ModelAndView fileUploadPage() {
+    public ModelAndView fileUploadPage(@RequestParam("id") int id) {
+        book = bookService.getBookById(id);
         FileModel file = new FileModel();
         ModelAndView modelAndView = new ModelAndView("fileUpload", "command", file);
         return modelAndView;
@@ -42,9 +51,18 @@ public class FileUploadController {
             String uploadPath = "/home/kya" + File.separator + "temp" + File.separator;
 
             if(FileValidator.hasBookFormat(file) || FileValidator.hasValidImageResolution(file)) {
-                FileCopyUtils.copy(file.getFile().getBytes(), new File(uploadPath + file.getFile().getOriginalFilename()));
+                String path = uploadPath + file.getFile().getOriginalFilename();
+                FileCopyUtils.copy(file.getFile().getBytes(), new File(path));
                 String fileName = multipartFile.getOriginalFilename();
                 model.addAttribute("fileName", fileName);
+
+                if(FileValidator.hasImageFormat(file))
+                    book.setImage(path);
+                else
+                    book.setPath(path);;
+
+                bookService.updateBook(book);
+                
                 return "success";
             } else
                 return "imageNotValid";

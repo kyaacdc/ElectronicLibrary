@@ -91,8 +91,26 @@
                 <td>${book.bookAuthor}</td>
                 <td>${book.isbn}</td>
                 <td>${book.description}</td>
-                <td>${book.image}</td>
-                <td>${book.path}</td>
+                <td>
+                    <form action="/fileUpload">
+                        <input type="hidden" name="id" value=${book.id}>
+                        <input type="submit" value="Upload"/>
+                    </form>
+                    <form action="/fileDownload">
+                        <input type="hidden" name="id" value=${book.id}>
+                        <input type="submit" value="Download"/>
+                    </form>
+                </td>
+                <td>
+                    <form action="/fileUpload">
+                        <input type="hidden" name="id" value=${book.id}>
+                        <input type="submit" value="Upload"/>
+                    </form>
+                    <form action="/fileDownload">
+                        <input type="hidden" name="id" value=${book.id}>
+                        <input type="submit" value="Download"/>
+                    </form>
+                </td>
                 <td>${book.likes}</td>
                 <td>${book.dislikes}</td>
                 <td><a href="<c:url value='/edit/${book.id}'/>">Edit</a></td>
@@ -103,16 +121,6 @@
 </c:if>
 
 <h2>Add or Update Book Info</h2>
-
-<form action="/fileDownload">
-    <h5>Download file of Book from Server</h5>
-    <input type="submit" value="Download file of new Book"/>
-</form>
-
-<form action="/fileUpload">
-    <h5>Upload new file of Book on Server</h5>
-    <input type="submit" value="Upload file of new Book"/>
-</form>
 
 <c:url var="addAction" value="/books/add"/>
 

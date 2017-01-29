@@ -11,23 +11,28 @@ import java.nio.charset.Charset;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.el.spring.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class FileDownloadController {
 
-    private static final String INTERNAL_FILE= "fileForDownload.txt";
-    private static final String EXTERNAL_FILE_PATH="/home/kya/IdeaProjects/new/ElectronicLibrary/src/main/resources/fileForDownload.txt";
+    @Autowired
+    private BookService bookService;
 
+    private String filepath = "";
 
-    @RequestMapping(value={"/fileDownload"}, method = RequestMethod.GET)
-    public String getHomePage(ModelMap model) {
-        return "fileDownload";
+   @RequestMapping(value={"/fileDownload"}, method = RequestMethod.GET)
+   public String getHomePage(@RequestParam("id") int id, ModelMap model) {
+       filepath = bookService.getBookById(id).getPath();
+       return "fileDownload";
     }
 
     /*
@@ -38,14 +43,7 @@ public class FileDownloadController {
     @RequestMapping(value="/download/{type}", method = RequestMethod.GET)
     public void downloadFile(HttpServletResponse response, @PathVariable("type") String type) throws IOException {
 
-        File file = null;
-
-        if(type.equalsIgnoreCase("internal") || type.equalsIgnoreCase("internalview")){
-            ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-            file = new File(classloader.getResource(INTERNAL_FILE).getFile());
-        }else{
-            file = new File(EXTERNAL_FILE_PATH);
-        }
+        File file = new File(filepath);
 
         if(!file.exists()){
             String errorMessage = "Sorry. The file you are looking for does not exist";
@@ -68,7 +66,7 @@ public class FileDownloadController {
 
         /* "Content-Disposition : inline (but maybe - attachment) " will show viewable types [like images/text/pdf/anything viewable by browser] right on browser
             while others(zip e.g) will be directly downloaded [may provide save as popup, based on your browser setting.]*/
-        if(type.equalsIgnoreCase("externalview") || type.equalsIgnoreCase("internalview"))
+        if(type.equalsIgnoreCase("externalview"))
             response.setHeader("Content-Disposition", String.format("inline ; filename=\"" + file.getName() +"\""));
         else
             response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + file.getName() +"\""));
