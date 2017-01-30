@@ -13,8 +13,9 @@ public class Tag {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "BOOK_ID")
-    private int bookId;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "book")
+    Book book;
 
     public Tag() {
     }
@@ -35,20 +36,11 @@ public class Tag {
         this.name = name;
     }
 
-    public int getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    @Override
-    public String toString() {
-        return "Tag{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", bookId=" + bookId +
-                '}';
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

@@ -76,7 +76,7 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String listUsers(Model model){
         model.addAttribute("user", new User());
-        model.addAttribute("listUsers", this.userService.listUsers());
+        model.addAttribute("listUsers", userService.listUsers());
 
         return "/users";
     }
@@ -84,9 +84,9 @@ public class UserController {
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user){
         if(user.getId() == 0){
-            this.userService.addUser(user);
+            userService.addUser(user);
         }else {
-            this.userService.updateUser(user);
+            userService.updateUser(user);
         }
 
         return "redirect:/users";
@@ -94,15 +94,15 @@ public class UserController {
 
     @RequestMapping("/users/remove/{id}")
     public String removeUser(@PathVariable("id") int id){
-        this.userService.removeUser(id);
+        userService.removeUser(id);
 
         return "redirect:/users";
     }
 
     @RequestMapping("/users/edit/{id}")
     public String editUser(@PathVariable("id") int id, Model model){
-        model.addAttribute("user", this.userService.getUserById(id));
-        model.addAttribute("listUsers", this.userService.listUsers());
+        model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("listUsers", userService.listUsers());
 
         return "users";
     }

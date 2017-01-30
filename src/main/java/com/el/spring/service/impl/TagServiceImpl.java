@@ -4,16 +4,20 @@ import com.el.spring.daoRepository.TagDao;
 import com.el.spring.entity.Tag;
 import com.el.spring.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Service
 public class TagServiceImpl implements TagService{
 
     @Autowired
     TagDao tagDao;
 
     @Override
+    @Transactional
     public void addTag(Tag tag) {
         if(tagDao.findOne(tag.getId()) == null)
             tagDao.save(tag);
@@ -22,12 +26,29 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
+    @Transactional
+    public void updateTag(Tag tag) {
+        tagDao.save(tag);
+    }
+
+    @Override
+    @Transactional
+    public void removeTag(int id) {
+        Tag tag = tagDao.findOne(id);
+        if(tag!=null){
+            tagDao.delete(tag);
+        }
+    }
+
+    @Override
     public Tag getTagById(int id) {
         return tagDao.findById(id);
     }
 
     @Override
-    public List<Tag> getTags() {
+    @Transactional
+    @SuppressWarnings("unchecked")
+    public List<Tag> listTags() {
         return tagDao.findAll();
     }
 }
