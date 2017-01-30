@@ -5,7 +5,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Users Page</title>
+    <title>Tags Page</title>
 
     <style type="text/css">
         .tg {
@@ -49,36 +49,42 @@
 <body>
 <a href="/welcome">Back to main menu</a>
 
-<h1>Users List</h1>
+<h1>Tags List</h1>
 
-<c:if test="${!empty listUsers}">
+<c:if test="${!empty listTags}">
     <table class="tg">
         <tr>
             <th width="80">ID</th>
-            <th width="120">username</th>
-            <th width="120">password</th>
+            <th width="120">name</th>
+            <th width="120">BookName</th>
             <th width="60">Edit</th>
             <th width="60">Delete</th>
         </tr>
-        <c:forEach items="${listUsers}" var="user">
+        <c:forEach items="${listTags}" var="tag">
             <tr>
-                <td>${user.id}</td>
-                <td>${user.username}</td>
-                <td>${user.password}</td>
-                <td><a href="<c:url value='/users/edit/${user.id}'/>">Edit</a></td>
-                <td><a href="<c:url value='/users/remove/${user.id}'/>">Delete</a></td>
+                <td>${tag.id}</td>
+                <td>${tag.tagname}</td>
+                <td>
+                    <c:forEach items="${listBooks}" var="book">
+                        <c:if test="${book.id == tag.bookid}">
+                            ${book.bookTitle}
+                        </c:if>
+                    </c:forEach>
+                </td>
+                <td><a href="<c:url value='/tags/edit/${tag.id}'/>">Edit</a></td>
+                <td><a href="<c:url value='/tags/remove/${tag.id}'/>">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
 </c:if>
 
-<h2>Add or Update User Info</h2>
+<h2>Add or Update Tag Info</h2>
 
-<c:url var="addAction" value="/users/add"/>
+<c:url var="addAction" value="/tags/add"/>
 
-<form:form action="${addAction}" commandName="user">
+<form:form action="${addAction}" commandName="tag">
     <table>
-        <c:if test="${!empty user.username}">
+        <c:if test="${!empty tag.tagname}">
             <tr>
                 <td>
                     <form:label path="id">
@@ -93,36 +99,35 @@
         </c:if>
         <tr>
             <td>
-                <form:label path="username">
-                    <spring:message text="username"/>
+                <form:label path="tagname">
+                    <spring:message text="tagname"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="username"/>
+                <form:input path="tagname"/>
             </td>
         </tr>
         <tr>
             <td>
-                <form:label path="password">
-                    <spring:message text="password"/>
+                <form:label path="bookid">
+                    <spring:message text="bookid"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="password"/>
+                <form:input path="bookid"/>
             </td>
         </tr>
-
         <tr>
-        <td colspan="2">
-            <c:if test="${!empty user.username}">
-                <input type="submit"
-                       value="<spring:message text="Edit Info"/>"/>
-            </c:if>
-            <c:if test="${empty user.username}">
-                <input type="submit"
-                       value="<spring:message text="Add Info"/>"/>
-            </c:if>
-        </td>
+            <td colspan="2">
+                <c:if test="${!empty tag.tagname}">
+                    <input type="submit"
+                           value="<spring:message text="Edit Info"/>"/>
+                </c:if>
+                <c:if test="${empty tag.tagname}">
+                    <input type="submit"
+                           value="<spring:message text="Add Info"/>"/>
+                </c:if>
+            </td>
         </tr>
     </table>
 </form:form>

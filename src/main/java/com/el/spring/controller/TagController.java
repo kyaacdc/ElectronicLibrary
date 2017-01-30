@@ -1,6 +1,7 @@
 package com.el.spring.controller;
 
 import com.el.spring.entity.Tag;
+import com.el.spring.service.BookService;
 import com.el.spring.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,15 @@ public class TagController {
     @Autowired
     private TagService tagService;
 
+    @Autowired
+    private BookService bookService;
+
     //Operations with Tags
 
     @RequestMapping(value = "tags", method = RequestMethod.GET)
     public String listTags(Model model) {
         model.addAttribute("tag", new Tag());
+        model.addAttribute("listBooks", bookService.listBooks());
         model.addAttribute("listTags", tagService.listTags());
 
         return "tags";
@@ -37,14 +42,14 @@ public class TagController {
         return "redirect:/tags";
     }
 
-    @RequestMapping("/remove/{id}")
+    @RequestMapping("/tags/remove/{id}")
     public String removeTag(@PathVariable("id") int id) {
         tagService.removeTag(id);
 
         return "redirect:/tags";
     }
 
-    @RequestMapping("edit/{id}")
+    @RequestMapping("/tags/edit/{id}")
     public String editTag(@PathVariable("id") int id, Model model) {
         model.addAttribute("tag", tagService.getTagById(id));
         model.addAttribute("listTags", tagService.listTags());

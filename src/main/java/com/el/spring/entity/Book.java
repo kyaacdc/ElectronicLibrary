@@ -3,36 +3,36 @@ package com.el.spring.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "BOOKS")
+@Table(name = "books")
 public class Book {
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "BOOK_TITLE")
+    @Column(name = "bookTitle")
     private String bookTitle;
 
-    @Column(name = "BOOK_AUTHOR")
+    @Column(name = "bookAuthor")
     private String bookAuthor;
 
-    @Column(name = "ISBN")
+    @Column(name = "isbn")
     private String isbn;
 
-    @Column(name = "DESCRIPTION")
-    private String description;
+    @Column(name = "descr")
+    private String descr;
 
-    @Column(name = "IMAGE")
+    @Column(name = "image")
     private String image;
 
-    @Column(name = "PATH")
+    @Column(name = "path")
     private String path;
 
-    @Column(name = "LIKES")
-    private int likes;
+    @Column(name = "likes")
+    private String likes;
 
-    @Column(name = "DISLIKES")
-    private int dislikes;
+    @Column(name = "dislikes")
+    private String dislikes;
 
     public Book() {
     }
@@ -69,12 +69,12 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescr() {
+        return descr;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescr(String descr) {
+        this.descr = descr;
     }
 
     public String getImage() {
@@ -93,19 +93,20 @@ public class Book {
         this.path = path;
     }
 
-    public int getLikes() {
+    public String getLikes() {
         return likes;
     }
 
-    public void setLikes(int likes) {
+    public void setLikes(String likes) {
         this.likes = likes;
     }
 
-    public int getDislikes() {
+    public String getDislikes() {
         return dislikes;
     }
 
-    public void setDislikes(int dislikes) {
+    public void setDislikes(String dislikes) {
         this.dislikes = dislikes;
     }
 }
+

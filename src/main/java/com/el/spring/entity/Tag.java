@@ -3,19 +3,22 @@ package com.el.spring.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "TAG")
+@Table(name = "tags")
 public class Tag {
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "tagname")
+    private String tagname;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "book")
-    Book book;
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    //@JoinColumn(name = "bookid")
+    //private Book bookid;
+
+    @Column(name = "bookid")
+    private int bookid;
 
     public Tag() {
     }
@@ -28,19 +31,19 @@ public class Tag {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTagname() {
+        return tagname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTagname(String tagname) {
+        this.tagname = tagname;
     }
 
-    public Book getBook() {
-        return book;
+    public int getBookid() {
+        return bookid;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookid(int bookid) {
+        this.bookid = bookid;
     }
 }

@@ -106,14 +106,10 @@ public enum EnumBookSort implements Function<Book, Object>, Comparator<Book> {
     SORT_BY_LIKES_REVERSED {
         @Override
         public int compare(Book o1, Book o2) {
-            if (o2.getLikes() > o1.getLikes())
-                return 1;
-            else if (o2.getLikes() < o1.getLikes())
-                return -1;
-            else return 1;
+            return o2.getLikes().compareTo(o1.getLikes());
         }
         @Override
-        public Integer apply(Book book) {
+        public String apply(Book book) {
             return book.getLikes();
         }
     },
@@ -121,14 +117,10 @@ public enum EnumBookSort implements Function<Book, Object>, Comparator<Book> {
     SORT_BY_LIKES {
         @Override
         public int compare(Book o1, Book o2) {
-            if (o2.getLikes() < o1.getLikes())
-                return 1;
-            else if (o2.getLikes() > o1.getLikes())
-                return -1;
-            else return 1;
+            return o1.getLikes().compareTo(o2.getLikes());
         }
         @Override
-        public Integer apply(Book book) {
+        public String apply(Book book) {
             return book.getLikes();
         }
     },
@@ -136,14 +128,10 @@ public enum EnumBookSort implements Function<Book, Object>, Comparator<Book> {
     SORT_BY_DISLIKES_REVERSED {
         @Override
         public int compare(Book o1, Book o2) {
-            if (o2.getDislikes() > o1.getDislikes())
-                return 1;
-            else if (o2.getDislikes() < o1.getDislikes())
-                return -1;
-            else return 1;
+            return o2.getDislikes().compareTo(o1.getDislikes());
         }
         @Override
-        public Integer apply(Book book) {
+        public String apply(Book book) {
             return book.getDislikes();
         }
     },
@@ -151,14 +139,10 @@ public enum EnumBookSort implements Function<Book, Object>, Comparator<Book> {
     SORT_BY_DISLIKES {
         @Override
         public int compare(Book o1, Book o2) {
-            if (o2.getDislikes() < o1.getDislikes())
-                return 1;
-            else if (o2.getDislikes() > o1.getDislikes())
-                return -1;
-            else return 1;
+            return o1.getDislikes().compareTo(o2.getDislikes());
         }
         @Override
-        public Integer apply(Book book) {
+        public String apply(Book book) {
             return book.getDislikes();
         }
     }

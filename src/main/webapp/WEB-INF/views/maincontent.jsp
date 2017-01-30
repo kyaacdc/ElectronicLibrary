@@ -73,7 +73,7 @@
                 <td><a href="/bookdata/${book.id}" target="_blank">${book.bookTitle}</a></td>
                 <td>${book.bookAuthor}</td>
                 <td>${book.isbn}</td>
-                <td>${book.description}</td>
+                <td>${book.descr}</td>
                 <td>${book.image}</td>
                 <td>${book.path}</td>
                 <td>${book.likes}</td>

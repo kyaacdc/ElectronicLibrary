@@ -36,6 +36,10 @@
     <a href="<c:url value="/books"/>" target="_blank"><h4>Manage Books (only for ROLE_ADMIN)</h4></a>
     <br><br><br>
     <a href="<c:url value="/users"/>" target="_blank"><h4>Manage Users (only for ROLE_ADMIN)</h4></a>
+    <br><br><br>
+    <a href="<c:url value="/tags"/>" target="_blank"><h4>Manage Tags (only for ROLE_ADMIN)</h4></a>
+
+
 
     <br><br><br><br><br><br>
     <h6>Designed by Yuriy Kozheurov</h6>

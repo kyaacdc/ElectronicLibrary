@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Set<Role> roles = new HashSet<>();
-        roles.add(roleDao.getOne(1L));
+        roles.add(roleDao.getOne(1));
         user.setRoles(roles);
         userDao.save(user);
     }
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void removeUser(int id) {
-        User user = userDao.findOne(id);
+        User user = userDao.findUserById(id);
         if(user!=null){
             userDao.delete(user);
         }

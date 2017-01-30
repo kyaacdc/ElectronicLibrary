@@ -42,7 +42,7 @@ public class TagServiceImpl implements TagService{
 
     @Override
     public Tag getTagById(int id) {
-        return tagDao.findById(id);
+        return tagDao.findOne(id);
     }
 
     @Override

@@ -62,8 +62,8 @@
 </form>
 
 <form action="/bookfindDescr">
-    <label for="description">Search list books by Description:</label>
-    <input type="text" title="description" name="description" placeholder="description"/>
+    <label for="bookTitle">Search list books by Description:</label>
+    <input type="text" title="descr" name="descr" placeholder="descr"/>
     <input type="submit" value="Search"/>
 </form>
 
@@ -90,7 +90,7 @@
                 <td><a href="/bookdata/${book.id}" target="_blank">${book.bookTitle}</a></td>
                 <td>${book.bookAuthor}</td>
                 <td>${book.isbn}</td>
-                <td>${book.description}</td>
+                <td>${book.descr}</td>
                 <td>
                     <form action="/fileUpload">
                         <input type="hidden" name="id" value=${book.id}>
@@ -121,6 +121,51 @@
 </c:if>
 
 <h2>Add or Update Book Info</h2>
+
+<c:url var="addAction" value="/books/add"/>
+
+
+<form:form action="${addAction}" commandName="book">
+    <table>
+        <c:if test="${!empty book.bookTitle}">
+            <tr>
+                <td>
+                    <form:label path="id">
+                        <spring:message text="ID"/>
+                    </form:label>
+                </td>
+                <td>
+                    <form:input path="id" readonly="true" size="8" disabled="true"/>
+                    <form:hidden path="id"/>
+                </td>
+            </tr>
+        </c:if>
+        <tr>
+            <td>
+                <form:label path="bookTitle">
+                    <spring:message text="Title"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="bookTitle"/>
+            </td>
+        </tr>
+
+        <tr>
+        <td colspan="2">
+            <c:if test="${!empty book.bookTitle}">
+                <input type="submit"
+                       value="<spring:message text="Edit Info"/>"/>
+            </c:if>
+            <c:if test="${empty book.bookTitle}">
+                <input type="submit"
+                       value="<spring:message text="Add Info"/>"/>
+            </c:if>
+        </td>
+        </tr>
+    </table>
+</form:form>
+<h1>Add a Book</h1>
 
 <c:url var="addAction" value="/books/add"/>
 
@@ -171,12 +216,12 @@
         </tr>
         <tr>
             <td>
-                <form:label path="description">
-                    <spring:message text="Description"/>
+                <form:label path="descr">
+                    <spring:message text="Descr"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="description"/>
+                <form:input path="descr"/>
             </td>
         </tr>
         <tr>
@@ -223,16 +268,15 @@
         <td colspan="2">
             <c:if test="${!empty book.bookTitle}">
                 <input type="submit"
-                       value="<spring:message text="Edit Info"/>"/>
+                       value="<spring:message text="Edit Book"/>"/>
             </c:if>
             <c:if test="${empty book.bookTitle}">
                 <input type="submit"
-                       value="<spring:message text="Add Info"/>"/>
+                       value="<spring:message text="Add Book"/>"/>
             </c:if>
         </td>
         </tr>
     </table>
 </form:form>
-
 </body>
 </html>

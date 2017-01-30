@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
-import static com.el.spring.service.impl.enums.EnumFindCriteria.DESCRIPTION;
+
+import static com.el.spring.service.impl.enums.EnumFindCriteria.DESCR;
 import static com.el.spring.service.impl.enums.EnumFindCriteria.TITLE;
 
 @Service
@@ -19,19 +20,16 @@ public class BookServiceImpl implements BookService {
     private BookDao bookDao;
 
     @Override
-    @Transactional
     public void addBook(Book book) {
         bookDao.save(book);
     }
 
     @Override
-    @Transactional
     public void updateBook(Book book) {
         bookDao.save(book);
     }
 
     @Override
-    @Transactional
     public void removeBook(int id) {
         Book book = bookDao.findOne(id);
         if(book!=null){
@@ -81,8 +79,8 @@ public class BookServiceImpl implements BookService {
         for(Book b: all){
             if(findCriteria == TITLE)
                 str = b.getBookTitle();
-            else if(findCriteria == DESCRIPTION)
-                str = b.getDescription();
+            else if(findCriteria == DESCR)
+                str = b.getDescr();
             else
                 throw new NoSuchElementException();
 
@@ -102,4 +100,5 @@ public class BookServiceImpl implements BookService {
 
         return result;
     }
+
 }
