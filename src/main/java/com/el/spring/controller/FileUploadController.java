@@ -1,5 +1,6 @@
 package com.el.spring.controller;
 
+import com.el.spring.Util.PropertyAccessor;
 import com.el.spring.controller.assistant.FileValidator;
 import com.el.spring.controller.assistant.FileModel;
 import com.el.spring.entity.Book;
@@ -48,7 +49,8 @@ public class FileUploadController {
         } else {
             System.out.println("Fetching file");
             MultipartFile multipartFile = file.getFile();
-            String uploadPath = "/home/kya" + File.separator + "temp" + File.separator;
+            String uploadPath = PropertyAccessor.getPathForFileUpload()
+                    + File.separator + "temp" + File.separator;
 
             if(FileValidator.hasBookFormat(file) || FileValidator.hasValidImageResolution(file)) {
                 String path = uploadPath + file.getFile().getOriginalFilename();

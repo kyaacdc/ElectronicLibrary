@@ -1,7 +1,6 @@
 package com.el.spring.service;
 
 import com.el.spring.entity.User;
-
 import java.util.List;
 
 public interface UserService{

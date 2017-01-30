@@ -64,6 +64,11 @@ public class UserController {
         return "welcome";
     }
 
+    @RequestMapping(value = {"/manage"}, method = RequestMethod.GET)
+    public String manage(Model model) {
+        return "manage";
+    }
+
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
         return "admin";

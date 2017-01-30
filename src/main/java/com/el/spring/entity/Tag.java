@@ -13,10 +13,6 @@ public class Tag {
     @Column(name = "tagname")
     private String tagname;
 
-    //@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    //@JoinColumn(name = "bookid")
-    //private Book bookid;
-
     @Column(name = "bookid")
     private int bookid;
 

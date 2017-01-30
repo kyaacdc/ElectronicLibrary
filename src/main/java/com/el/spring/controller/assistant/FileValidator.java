@@ -5,8 +5,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Properties;
 
+import com.el.spring.Util.PropertyAccessor;
 import javafx.scene.shape.Path;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.FileSystemUtils;
@@ -29,7 +32,8 @@ public class FileValidator {
 
     public static boolean hasValidImageResolution(FileModel file) throws IOException {
         String filename = file.getFile().getOriginalFilename();
-        File image = new File("/home/kya" + File.separator + "temp" + File.separator + filename);
+        File image = new File(PropertyAccessor.getPathForFileUpload()
+                + File.separator + "temp" + File.separator + filename);
         FileCopyUtils.copy(file.getFile().getBytes(), image);
         BufferedImage bimg = ImageIO.read(image);
         int width = bimg.getWidth();

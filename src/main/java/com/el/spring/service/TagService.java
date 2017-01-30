@@ -1,7 +1,6 @@
 package com.el.spring.service;
 
 import com.el.spring.entity.Tag;
-
 import java.util.List;
 
 public interface TagService {
