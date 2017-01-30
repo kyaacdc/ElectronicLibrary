@@ -73,9 +73,9 @@
     <td>${book.image}</td>
     <td>${book.path}</td>
     <td>${book.likes}
-      <form action="/addLike">
+      <form action="/changeRate">
         <p>
-          <select name=addLike size=1>
+          <select name=setRate size=1>
             <option value=1 selected>1</option>
             <option value=2>2</option>
             <option value=3>3</option>
@@ -84,11 +84,29 @@
           </select>
         </p>
         <input type="hidden" name="id" value=${book.id}>
+        <input type="hidden" name="islike" value=1>
         <p><input type="submit" value="OK"></p>
       </form>
     </td>
-    <td>${book.dislikes}</td>
+    <td>${book.dislikes}
+      <form action="/changeRate">
+        <p>
+          <select name=setRate size=1>
+            <option value=1 selected>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+          </select>
+        </p>
+        <input type="hidden" name="id" value=${book.id}>
+        <input type="hidden" name="islike" value=0>
+        <p><input type="submit" value="OK"></p>
+      </form>
+    </td>
   </tr>
+  <br><br><br><br><br><br>
+  <h6>@ Designed by Yuriy Kozheurov</h6>
 </table>
 </body>
 </html>

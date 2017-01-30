@@ -14,5 +14,7 @@
 <a href="/welcome">Back to main menu</a>
 <h1>Sorry, this image resolution is not found</h1>
 <h2>Image resolution must be not more than 800 X 600 px.</h2>
+<br><br><br><br><br><br>
+<h6>@ Designed by Yuriy Kozheurov</h6>
 </body>
 </html>

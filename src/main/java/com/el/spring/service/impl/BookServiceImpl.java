@@ -105,10 +105,16 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void addLike(int id, String addLike) {
+    public void changeRate(int id, int islike, String setRate) {
+        int newRate;
         Book book = bookDao.findBookById(id);
-        int newLike = Integer.parseInt(addLike) + Integer.parseInt(book.getLikes());
-        book.setLikes(String.valueOf(newLike));
+        if(islike == 0) {
+            newRate = Integer.parseInt(setRate) + Integer.parseInt(book.getDislikes());
+            book.setDislikes(String.valueOf(newRate));
+        } else {
+            newRate = Integer.parseInt(setRate) + Integer.parseInt(book.getLikes());
+            book.setLikes(String.valueOf(newRate));
+        }
         updateBook(book);
     }
 

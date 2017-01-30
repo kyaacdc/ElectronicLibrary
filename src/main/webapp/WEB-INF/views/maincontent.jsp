@@ -82,7 +82,8 @@
         </c:forEach>
     </table>
 </c:if>
-
+<br><br><br><br><br><br>
+<h6>@ Designed by Yuriy Kozheurov</h6>
 </body>
 </html>
 

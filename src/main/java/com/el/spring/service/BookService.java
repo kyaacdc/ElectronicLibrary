@@ -24,5 +24,5 @@ public interface BookService {
 
     List<Book> listBookByCriteria(String searchValue, EnumFindCriteria findCriteria);
 
-    void addLike(int id, String addLike);
+    void changeRate(int id, int islike, String setRate);
 }

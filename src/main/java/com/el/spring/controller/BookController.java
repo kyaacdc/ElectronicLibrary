@@ -104,12 +104,13 @@ public class BookController {
         return "maincontent";
     }
 
-    @RequestMapping("/addLike")
-    public String addLike(@RequestParam("id") int id,
-                          @RequestParam("addLike") String addLike,
-                          Model model)
+    @RequestMapping("/changeRate")
+    public String changeRate(@RequestParam("id") int id,
+                             @RequestParam("islike") int islike,
+                             @RequestParam("setRate") String setRate,
+                             Model model)
     {
-        bookService.addLike(id, addLike);
+        bookService.changeRate(id, islike, setRate);
         return bookData(id, model);
     }
 }

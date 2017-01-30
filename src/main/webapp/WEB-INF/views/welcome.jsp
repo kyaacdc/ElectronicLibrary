@@ -32,13 +32,14 @@
     </c:if>
 
     <br><br>
-    <a href="<c:url value="/maincontent"/>" target="_blank"><h3>View Books</h3></a><br><br><br>
-    <a href="<c:url value="/manage"/>" target="_blank"><h4>Manage Panel (only for admin)</h4></a>
+    <a href="<c:url value="/maincontent"/>" target="_blank"><h1>Looking for Books</h1></a><br><br><br>
+
+    <a href="<c:url value="/manage"/>" target="_blank"><h4>Management Admin Panel (only for administrators)</h4></a>
 
 
 
     <br><br><br><br><br><br>
-    <h6>Designed by Yuriy Kozheurov</h6>
+    <h6>@ Designed by Yuriy Kozheurov</h6>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

@@ -76,5 +76,7 @@
         <td>${book.dislikes}</td>
     </tr>
 </table>
+<br><br><br><br><br><br>
+<h6>@ Designed by Yuriy Kozheurov</h6>
 </body>
 </html>

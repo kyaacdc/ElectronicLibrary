@@ -13,5 +13,7 @@
 <body>
 <a href="/welcome">Back to main menu</a>
 <h1>Sorry, this book not found</h1>
+<br><br><br><br><br><br>
+<h6>@ Designed by Yuriy Kozheurov</h6>
 </body>
 </html>
