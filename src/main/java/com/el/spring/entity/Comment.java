@@ -3,23 +3,24 @@ package com.el.spring.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "comentary")
-public class Comentary {
+@Table(name = "comments")
+public class Comment {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "user_id")
+    @Column(name = "userid")
     private int userId;
 
-    @Column(name = "book_id")
+    @Column(name = "bookid")
     private int bookId;
 
     @Column(name = "description")
-    private int description;
+    private String description;
 
-    public Comentary() {
+    public Comment() {
     }
 
     public int getId() {
@@ -46,11 +47,11 @@ public class Comentary {
         this.bookId = bookId;
     }
 
-    public int getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(int description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 }

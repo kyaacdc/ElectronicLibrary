@@ -20,16 +20,19 @@ public class BookServiceImpl implements BookService {
     private BookDao bookDao;
 
     @Override
+    @Transactional
     public void addBook(Book book) {
         bookDao.save(book);
     }
 
     @Override
+    @Transactional
     public void updateBook(Book book) {
         bookDao.save(book);
     }
 
     @Override
+    @Transactional
     public void removeBook(int id) {
         Book book = bookDao.findOne(id);
         if(book!=null){
@@ -99,6 +102,14 @@ public class BookServiceImpl implements BookService {
             throw new NoSuchElementException();
 
         return result;
+    }
+
+    @Override
+    public void addLike(int id, String addLike) {
+        Book book = bookDao.findBookById(id);
+        int newLike = Integer.parseInt(addLike) + Integer.parseInt(book.getLikes());
+        book.setLikes(String.valueOf(newLike));
+        updateBook(book);
     }
 
 }

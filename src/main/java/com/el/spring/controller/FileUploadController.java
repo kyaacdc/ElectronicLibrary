@@ -1,6 +1,6 @@
 package com.el.spring.controller;
 
-import com.el.spring.Util.PropertyAccessor;
+import com.el.spring.util.PropertyAccessor;
 import com.el.spring.controller.assistant.FileValidator;
 import com.el.spring.controller.assistant.FileModel;
 import com.el.spring.entity.Book;

@@ -72,7 +72,21 @@
     <td>${book.descr}</td>
     <td>${book.image}</td>
     <td>${book.path}</td>
-    <td>${book.likes}</td>
+    <td>${book.likes}
+      <form action="/addLike">
+        <p>
+          <select name=addLike size=1>
+            <option value=1 selected>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+          </select>
+        </p>
+        <input type="hidden" name="id" value=${book.id}>
+        <p><input type="submit" value="OK"></p>
+      </form>
+    </td>
     <td>${book.dislikes}</td>
   </tr>
 </table>

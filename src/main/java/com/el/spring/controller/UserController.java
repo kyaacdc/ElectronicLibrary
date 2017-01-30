@@ -1,6 +1,6 @@
 package com.el.spring.controller;
 
-import com.el.spring.Util.UserValidator;
+import com.el.spring.util.UserValidator;
 import com.el.spring.entity.User;
 import com.el.spring.service.SecurityService;
 import com.el.spring.service.UserService;

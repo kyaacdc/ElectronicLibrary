@@ -28,6 +28,9 @@
     <a href="<c:url value="/users"/>" target="_blank"><h4>Manage Users (only for ROLE_ADMIN)</h4></a>
     <br><br><br>
     <a href="<c:url value="/tags"/>" target="_blank"><h4>Manage Tags (only for ROLE_ADMIN)</h4></a>
+    <br><br><br>
+    <a href="<c:url value="/comments"/>" target="_blank"><h4>Manage Comments (only for ROLE_ADMIN)</h4></a>
+
 
     <br><br><br><br><br><br>
     <h6>Designed by Yuriy Kozheurov</h6>

@@ -4,16 +4,9 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Properties;
 
-import com.el.spring.Util.PropertyAccessor;
-import javafx.scene.shape.Path;
+import com.el.spring.util.PropertyAccessor;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.util.FileSystemUtils;
-import org.springframework.validation.ValidationUtils;
 
 public class FileValidator {
 

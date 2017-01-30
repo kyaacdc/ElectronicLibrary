@@ -23,4 +23,6 @@ public interface BookService {
     Set<Book> setBooks();
 
     List<Book> listBookByCriteria(String searchValue, EnumFindCriteria findCriteria);
+
+    void addLike(int id, String addLike);
 }

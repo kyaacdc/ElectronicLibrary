@@ -1,4 +1,4 @@
-package com.el.spring.Util;
+package com.el.spring.util;
 
 import com.el.spring.entity.User;
 import com.el.spring.service.UserService;

@@ -12,6 +12,5 @@ public interface TagService {
 
     Tag getTagById(int id);
 
-
     List<Tag> listTags();
 }
