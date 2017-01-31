@@ -1,17 +1,15 @@
 package com.el.spring.controller;
 
 import com.el.spring.entity.Book;
-import com.el.spring.service.BookService;
-import com.el.spring.service.CommentService;
-import com.el.spring.service.UserService;
+import com.el.spring.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.NoSuchElementException;
 
-import static com.el.spring.service.impl.enums.EnumFindCriteria.DESCR;
-import static com.el.spring.service.impl.enums.EnumFindCriteria.TITLE;
+import static com.el.spring.service.impl.enums.EnumBookSort.getCriteriaByKey;
+import static com.el.spring.service.impl.enums.EnumFindCriteria.*;
 
 @Controller
 public class BookController {
@@ -76,37 +74,39 @@ public class BookController {
         return "/bookdata";
     }
 
-    @RequestMapping("/bookfind")
-    public String exactlyBookFindByTittle(@RequestParam("bookTitle") String bookTitle, Model model){
+    @RequestMapping("/findBooks")
+    public String findBooks(@RequestParam("findOption") int findOption,
+                            @RequestParam("searchValue") String searchValue,
+                            Model model)
+    {
+        if(searchValue.equals(""))
+            return "/notfound";
+
         try {
-            model.addAttribute("book", bookService.getExactlyBookByTitle(bookTitle));
+            switch (findOption) {
+                case 1: {
+                    model.addAttribute("book", bookService.getExactlyBookByTitle(searchValue));
+                    return "/bookfind";
+                }
+                case 2: {
+                    model.addAttribute("listBooks", bookService.listBookByCriteria(searchValue, TITLE));
+                    return "maincontent";
+                }
+                case 3: {
+                    model.addAttribute("listBooks", bookService.listBookByCriteria(searchValue, DESCR));
+                    return "maincontent";
+                }
+                default: throw new NoSuchElementException();
+            }
         } catch (NoSuchElementException e) {
             return "/notfound";
         }
-
-        return "/bookfind";
     }
 
-    @RequestMapping("/bookfindDescr")
-    public String bookFindByDescr(@RequestParam("descr") String descr, Model model){
-        try {
-            model.addAttribute("book", new Book());
-            model.addAttribute("listBooks", bookService.listBookByCriteria(descr, DESCR));
-        } catch (NoSuchElementException e) {
-            return "/notfound";
-        }
+    @RequestMapping("/bookSortByCriteria")
+    public String bookSortByCriteria(@RequestParam("criteria") int criteria, Model model){
 
-        return "maincontent";
-    }
-
-    @RequestMapping("/bookfindTitle")
-    public String bookFindByTitle(@RequestParam("bookTitle") String title, Model model){
-        try {
-            model.addAttribute("book", new Book());
-            model.addAttribute("listBooks", bookService.listBookByCriteria(title, TITLE));
-        } catch (NoSuchElementException e) {
-            return "/notfound";
-        }
+        model.addAttribute("listBooks", bookService.listSortedBooks(getCriteriaByKey(criteria)));
 
         return "maincontent";
     }
@@ -114,7 +114,7 @@ public class BookController {
     @RequestMapping("/changeRate")
     public String changeRate(@RequestParam("id") int id,
                              @RequestParam("islike") int islike,
-                             @RequestParam("setRate") String setRate,
+                             @RequestParam("setRate") int setRate,
                              Model model)
     {
         bookService.changeRate(id, islike, setRate);

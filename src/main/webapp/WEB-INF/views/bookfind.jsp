@@ -49,7 +49,7 @@
 
 </head>
 <body>
-<a href="/welcome">Back to main menu</a>
+<a href="/maincontent">Back to Book menu</a>
 <h1>Book Details</h1>
 
 <table class="tg">

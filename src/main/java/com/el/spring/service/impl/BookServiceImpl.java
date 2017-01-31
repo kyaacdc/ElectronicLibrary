@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
+import java.util.stream.Collectors;
 
-import static com.el.spring.service.impl.enums.EnumFindCriteria.DESCR;
-import static com.el.spring.service.impl.enums.EnumFindCriteria.TITLE;
+import static com.el.spring.service.impl.enums.EnumFindCriteria.*;
+import static com.el.spring.service.impl.enums.EnumBookSort.*;
+
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -51,9 +53,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book getExactlyBookByTitle(String bookTitle) {
+    public Book getExactlyBookByTitle(String searchValue) {
         Optional<Book> book = bookDao.findAll().stream()
-                .filter(a -> a.getBookTitle().equals(bookTitle))
+                .filter(a -> a.getBookTitle().equals(searchValue))
                 .findFirst();
         if(book.isPresent())
             return book.get();
@@ -66,8 +68,17 @@ public class BookServiceImpl implements BookService {
     @SuppressWarnings("unchecked")
     public List<Book> listBooks() {
         List<Book> list = bookDao.findAll();
-        list.sort(EnumBookSort.SORT_BY_ID);
+        list.sort(SORT_BY_TITLE);
         return list;
+    }
+
+    @Override
+    @Transactional
+    @SuppressWarnings("unchecked")
+    public List<Book> listSortedBooks(EnumBookSort criteria) {
+        return bookDao.findAll().stream()
+                .sorted(criteria)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -110,16 +121,14 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void changeRate(int id, int islike, String setRate) {
+    public void changeRate(int id, int islike, int setRate) {
         int newRate;
         Book book = bookDao.findBookById(id);
-        if(islike == 0) {
-            newRate = Integer.parseInt(setRate) + Integer.parseInt(book.getDislikes());
-            book.setDislikes(String.valueOf(newRate));
-        } else {
-            newRate = Integer.parseInt(setRate) + Integer.parseInt(book.getLikes());
-            book.setLikes(String.valueOf(newRate));
-        }
+        if (islike == 0)
+            book.setDislikes(setRate + book.getDislikes());
+        else
+            book.setLikes(setRate + book.getLikes());
+
         updateBook(book);
     }
 

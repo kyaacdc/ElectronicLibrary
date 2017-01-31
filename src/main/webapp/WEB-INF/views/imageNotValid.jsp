@@ -11,7 +11,7 @@
     <title>ERROR. Sorry, this image not found</title>
 </head>
 <body>
-<a href="/welcome">Back to main menu</a>
+<a href="/books">Back to Book Admin menu</a>
 <h1>Sorry, this image resolution is not found</h1>
 <h2>Image resolution must be not more than 800 X 600 px.</h2>
 <br><br><br><br><br><br>

@@ -9,6 +9,8 @@
     <link href="<c:url value='/resources/css/common.css' />" rel="stylesheet"></link>
 </head>
 <body>
+<a href="/books">Back to Book Admin menu</a>
+
 <div class="form-container">
     <h1>Welcome to Electronic Library Book Downloader</h1>
 

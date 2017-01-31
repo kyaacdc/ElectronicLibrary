@@ -4,7 +4,7 @@
     <title>File add success</title>
 </head>
 <body>
-<a href="/welcome">Back to main menu</a>
+<a href="/books">Back to Book admin menu</a>
 FileName :
 <b> ${fileName} </b> - Uploaded Successfully.
 <br><br><br><br><br><br>

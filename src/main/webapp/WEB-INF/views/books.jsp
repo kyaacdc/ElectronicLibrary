@@ -49,22 +49,55 @@
 <body>
 <a href="/welcome">Back to main menu</a>
 
-<form action="/bookfind">
-    <label for="bookTitle">Exactly Search One book by Title:</label>
-    <input type="text" title="bookTitle" name="bookTitle" placeholder="bookTitle"/>
-    <input type="submit" value="Search"/>
+<form action="/findBooks" name="Search By:">
+    <table class="tg" name="Search By:">
+        <tr>
+            <th width="120">
+                <select name=findOption size=1>
+                    <option value=2 selected>(default)</option>
+                    <option value=1>Tittle (exactly)</option>
+                    <option value=2>Tittle</option>
+                    <option value=3>Description</option>
+                </select>
+            </th>
+            <th width="120">
+                <input type="text" title="searchValue" name="searchValue" placeholder="Please input SEARCH value"/>
+            </th>
+            <th width="120">
+                <input type="submit" value="Search">
+            </th>
+        </tr>
+    </table>
 </form>
 
-<form action="/bookfindTitle">
-    <label for="bookTitle">Search list books by Title:</label>
-    <input type="text" title="bookTitle" name="bookTitle" placeholder="bookTitle"/>
-    <input type="submit" value="Search"/>
-</form>
-
-<form action="/bookfindDescr">
-    <label for="bookTitle">Search list books by Description:</label>
-    <input type="text" title="descr" name="descr" placeholder="descr"/>
-    <input type="submit" value="Search"/>
+<form action="/bookSortByCriteria" name="Sort By:">
+    <table class="tg" name="Sort By:">
+        <tr>
+            <th width="120">
+                <h2>Sort By:</h2>
+            </th>
+            <th width="120">
+                <select name=criteria size=1>
+                    <option value=0>ID</option>
+                    <option value=1>ID (reversed)</option>
+                    <option value=2>Tittle</option>
+                    <option value=3>Tittle (reversed)</option>
+                    <option value=4>Author</option>
+                    <option value=5>Author (reversed)</option>
+                    <option value=6>ISBN</option>
+                    <option value=7>ISBN (reversed)</option>
+                    <option value=8>Likes</option>
+                    <option value=9>Likes (reversed)</option>
+                    <option value=10>Dislikes</option>
+                    <option value=11>Dislikes (reversed)</option>
+                    <option value=12 selected>(default)</option>
+                </select>
+            </th>
+            <th width="120">
+                <input type="submit" value="Sort">
+            </th>
+        </tr>
+    </table>
 </form>
 
 <h1>Book List</h1>
@@ -236,7 +269,7 @@
 
 <form action="/removeAllBooks">
     <label>REMOVE All Books form library!!! (Be carefully):</label>
-    <input type="text" title="removeAllBooks" name="isRemoveAllBooks" placeholder="Input YES/NO (ignore case)"/>
+    <input type="text" title="removeAllBooks" name="isRemoveAllBooks" placeholder="Type YES/NO (ignore case)"/>
     <input type="submit" value="Remove All"/>
 </form>
 

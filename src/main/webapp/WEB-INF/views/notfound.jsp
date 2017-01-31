@@ -11,7 +11,7 @@
     <title>Sorry, this book not found</title>
 </head>
 <body>
-<a href="/welcome">Back to main menu</a>
+<a href="/maincontent">Back to Book menu</a>
 <h1>Sorry, this book not found</h1>
 <br><br><br><br><br><br>
 <h6>@ Designed by Yuriy Kozheurov</h6>

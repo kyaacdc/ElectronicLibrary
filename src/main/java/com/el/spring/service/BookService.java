@@ -1,6 +1,7 @@
 package com.el.spring.service;
 
 import com.el.spring.entity.Book;
+import com.el.spring.service.impl.enums.EnumBookSort;
 import com.el.spring.service.impl.enums.EnumFindCriteria;
 
 import java.util.List;
@@ -18,7 +19,9 @@ public interface BookService {
 
     Book getBookById(int id);
 
-    Book getExactlyBookByTitle(String bookTitle);
+    Book getExactlyBookByTitle(String searchValue);
+
+    List<Book> listSortedBooks(EnumBookSort criteria);
 
     List<Book> listBooks();
 
@@ -26,5 +29,5 @@ public interface BookService {
 
     List<Book> listBookByCriteria(String searchValue, EnumFindCriteria findCriteria);
 
-    void changeRate(int id, int islike, String setRate);
+    void changeRate(int id, int islike, int setRate);
 }
