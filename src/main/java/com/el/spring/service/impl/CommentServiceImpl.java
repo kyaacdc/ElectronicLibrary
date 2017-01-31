@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -43,6 +44,13 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment getCommentById(int id) {
         return commentDao.findCommentById(id);
+    }
+
+    @Override
+    public List<Comment> listCommentsByBook(int id) {
+        return listComments().stream().
+                filter(a -> a.getBookId() == id)
+                .collect(Collectors.toList());
     }
 
     @Override

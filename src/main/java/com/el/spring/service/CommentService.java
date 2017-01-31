@@ -13,6 +13,8 @@ public interface CommentService {
 
     Comment getCommentById(int id);
 
+    List<Comment> listCommentsByBook(int id);
+
     List<Comment> listComments();
 
 }

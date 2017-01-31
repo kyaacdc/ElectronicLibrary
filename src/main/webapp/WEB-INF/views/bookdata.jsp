@@ -105,8 +105,33 @@
       </form>
     </td>
   </tr>
+</table>
+
+  <h2>Comments</h2>
+
+  <c:if test="${!empty listComments}">
+    <table class="tg">
+      <tr>
+        <th width="40">User</th>
+        <th width="1200">Comment</th>
+      </tr>
+      <c:forEach items="${listComments}" var="comment">
+        <tr>
+          <td>
+            <c:forEach items="${listUsers}" var="user">
+              <c:if test="${comment.userId == user.id}">
+                ${user.username}
+              </c:if>
+            </c:forEach>
+          </td>
+          <td>${comment.description}</td>
+        </tr>
+      </c:forEach>
+    </table>
+  </c:if>
+
   <br><br><br><br><br><br>
   <h6>@ Designed by Yuriy Kozheurov</h6>
-</table>
+
 </body>
 </html>

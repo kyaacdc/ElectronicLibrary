@@ -2,12 +2,12 @@ package com.el.spring.controller;
 
 import com.el.spring.entity.Book;
 import com.el.spring.service.BookService;
+import com.el.spring.service.CommentService;
+import com.el.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 import static com.el.spring.service.impl.enums.EnumFindCriteria.DESCR;
@@ -19,13 +19,18 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private CommentService commentService;
+
+    @Autowired
+    private UserService userService;
+
     //Operations with Books
 
     @RequestMapping(value = "books", method = RequestMethod.GET)
     public String listBooks(Model model){
         model.addAttribute("book", new Book());
         model.addAttribute("listBooks", bookService.listBooks());
-
         return "books";
     }
 
@@ -65,6 +70,8 @@ public class BookController {
     @RequestMapping("bookdata/{id}")
     public String bookData(@PathVariable("id") int id, Model model){
         model.addAttribute("book", bookService.getBookById(id));
+        model.addAttribute("listComments", commentService.listCommentsByBook(id));
+        model.addAttribute("listUsers", userService.listUsers());
 
         return "/bookdata";
     }
@@ -111,6 +118,9 @@ public class BookController {
                              Model model)
     {
         bookService.changeRate(id, islike, setRate);
+        model.addAttribute("listComments", commentService.listCommentsByBook(id));
         return bookData(id, model);
     }
+
+
 }
