@@ -122,5 +122,14 @@ public class BookController {
         return bookData(id, model);
     }
 
+    @RequestMapping("/removeAllBooks")
+    public String removeAllBooks(@RequestParam("isRemoveAllBooks") String isRemoveAllBooks, Model model){
+
+        if(isRemoveAllBooks.equalsIgnoreCase("yes"))
+            bookService.removeAllBooks();
+        model.addAttribute("listBooks", bookService.listBooks());
+
+        return "redirect:/books";
+    }
 
 }

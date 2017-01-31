@@ -14,6 +14,8 @@ public interface BookService {
 
     void removeBook(int id);
 
+    void removeAllBooks();
+
     Book getBookById(int id);
 
     Book getExactlyBookByTitle(String bookTitle);

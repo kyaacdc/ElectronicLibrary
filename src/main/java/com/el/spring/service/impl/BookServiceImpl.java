@@ -41,6 +41,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public void removeAllBooks() {
+        bookDao.findAll().forEach(a -> removeBook(a.getId()));
+    }
+
+    @Override
     public Book getBookById(int id) {
         return bookDao.findBookById(id);
     }

@@ -233,6 +233,13 @@
         </tr>
     </table>
 </form:form>
+
+<form action="/removeAllBooks">
+    <label>REMOVE All Books form library!!! (Be carefully):</label>
+    <input type="text" title="removeAllBooks" name="isRemoveAllBooks" placeholder="Input YES/NO (ignore case)"/>
+    <input type="submit" value="Remove All"/>
+</form>
+
 <br><br><br><br><br><br>
 <h6>@ Designed by Yuriy Kozheurov</h6>
 </body>
