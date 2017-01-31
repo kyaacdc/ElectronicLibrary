@@ -109,6 +109,14 @@
 
   <h2>Comments</h2>
 
+<form action="/addComment">
+  <label>Add Comment</label>
+  <input type="hidden" name="bookId" value=${book.id}>
+  <input type="hidden" name="username" value=${pageContext.request.userPrincipal.name}>
+  <input type="text" name="descr"/>
+  <input type="submit" value="Add"/>
+</form>
+
   <c:if test="${!empty listComments}">
     <table class="tg">
       <tr>

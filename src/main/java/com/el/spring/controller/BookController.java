@@ -70,7 +70,7 @@ public class BookController {
     @RequestMapping("bookdata/{id}")
     public String bookData(@PathVariable("id") int id, Model model){
         model.addAttribute("book", bookService.getBookById(id));
-        model.addAttribute("listComments", commentService.listCommentsByBook(id));
+        model.addAttribute("listComments", commentService.listCommentsByBookReversed(id));
         model.addAttribute("listUsers", userService.listUsers());
 
         return "/bookdata";
@@ -118,7 +118,7 @@ public class BookController {
                              Model model)
     {
         bookService.changeRate(id, islike, setRate);
-        model.addAttribute("listComments", commentService.listCommentsByBook(id));
+        model.addAttribute("listComments", commentService.listCommentsByBookReversed(id));
         return bookData(id, model);
     }
 

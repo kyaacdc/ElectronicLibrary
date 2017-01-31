@@ -7,10 +7,7 @@ import com.el.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CommentController {
@@ -60,5 +57,30 @@ public class CommentController {
         model.addAttribute("listComments", commentService.listComments());
 
         return "comments";
+    }
+
+    public String bookData(@PathVariable("id") int id, Model model){
+        model.addAttribute("book", bookService.getBookById(id));
+        model.addAttribute("listComments", commentService.listCommentsByBookReversed(id));
+        model.addAttribute("listUsers", userService.listUsers());
+
+        return "/bookdata";
+    }
+
+    @RequestMapping(value = "/addComment", method = RequestMethod.GET)
+    public String addCommentToBookdataPage(@RequestParam("bookId") int bookId,
+                                           @RequestParam("username") String username,
+                                           @RequestParam("descr") String descr,
+                                           Model model)
+    {
+        int userId = userService.findByUsername(username).getId();
+        Comment comment = new Comment();
+        comment.setUserId(userId);
+        comment.setBookId(bookId);
+        comment.setDescription(descr);
+
+        commentService.addComment(comment);
+
+        return bookData(bookId, model);
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -47,10 +49,15 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> listCommentsByBook(int id) {
-        return listComments().stream().
-                filter(a -> a.getBookId() == id)
+    public List<Comment> listCommentsByBookReversed(int id) {
+
+        List<Comment> list = listComments().stream()
+                .filter(a -> a.getBookId() == id)
                 .collect(Collectors.toList());
+
+        Collections.reverse(list);
+
+        return list;
     }
 
     @Override
