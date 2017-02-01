@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -27,12 +29,12 @@ public class FileUploadController {
     private BookService bookService;
 
     private Book book;
-    boolean isImage = false;
+    private int isImage;
 
     @RequestMapping(value = "/fileUpload", method = RequestMethod.GET)
     public ModelAndView fileUploadPage(@RequestParam("id") int id,
                                        @RequestParam("isimage") int isimage) {
-        isImage = (isimage == 1);
+        isImage = isimage;
         book = bookService.getBookById(id);
         FileModel file = new FileModel();
         ModelAndView modelAndView = new ModelAndView("fileUpload", "command", file);
@@ -47,39 +49,81 @@ public class FileUploadController {
             return "fileUpload";
         } else {
             System.out.println("Fetching file");
+        }
             MultipartFile multipartFile = file.getFile();
+
 
             String uploadPath = "";
             String originalFilename = "";
             String path = "";
             String fileName = "";
 
-            if (isImage) {
+
+        int width = 1000;
+
+
+        int height = 1000;
+
                 uploadPath = (context.getRealPath("") + "resources/images" + File.separator);
-                if (FileValidator.hasValidImageResolution(file, uploadPath)) {
+
+                if(FileValidator.hasImageFormat(file)  && (isImage == 1) ) {
+                    //String filename = file.getFile().getOriginalFilename();
+                    //File image = new File(uploadPath + filename);
+                    //FileCopyUtils.copy(file.getFile().getBytes(), image);
+                    //BufferedImage bimg = ImageIO.read(image);
+                    //width = bimg.getWidth();
+                    //height = bimg.getHeight();
+
+                    if (FileValidator.hasValidImageResolution(file, uploadPath)) {
+                        originalFilename = file.getFile().getOriginalFilename();
+                        path = uploadPath + originalFilename;
+                        FileCopyUtils.copy(file.getFile().getBytes(), new File(path));
+                        fileName = multipartFile.getOriginalFilename();
+                        model.addAttribute("fileName", fileName);
+                        model.addAttribute("isImage");
+                        book.setImage("/resources/images/" + originalFilename);
+                        bookService.updateBook(book);
+                        return "success";
+                    } else
+                        return "imageNotValid";
+                }
+/*
+                if ((width < 600) && (height < 800) && (isImage == 1)){
                     originalFilename = file.getFile().getOriginalFilename();
                     path = uploadPath + originalFilename;
                     FileCopyUtils.copy(file.getFile().getBytes(), new File(path));
                     fileName = multipartFile.getOriginalFilename();
                     model.addAttribute("fileName", fileName);
+                    model.addAttribute("isImage");
                     book.setImage("/resources/images/" + originalFilename);
-                } else
+                    bookService.updateBook(book);
+                    return "success";
+                }  else if ((isImage == 1))
                     return "imageNotValid";
-            } else if (FileValidator.hasBookFormat(file)) {
-                uploadPath = (context.getRealPath("") + "resources/books" + File.separator);
-                originalFilename = file.getFile().getOriginalFilename();
+                    */
+
+               // width < 600 && height < 800 && hasImageFormat(file);
+
+
+
+
+
+
+         if (FileValidator.hasBookFormat(file)  && (isImage == 0)) {
+            uploadPath = (context.getRealPath("") + "resources/books" + File.separator);
+
+            originalFilename = file.getFile().getOriginalFilename();
                 path = uploadPath + originalFilename;
                 FileCopyUtils.copy(file.getFile().getBytes(), new File(path));
                 fileName = multipartFile.getOriginalFilename();
                 model.addAttribute("fileName", fileName);
                 book.setPath("/resources/books/" + originalFilename);
-            } else
-                return "Not valid format";
+             bookService.updateBook(book);
 
-            bookService.updateBook(book);
+             return "success";
+            }
 
-            return "success";
-        }
+            return "imageNotValid";
     }
 
 }

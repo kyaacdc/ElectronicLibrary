@@ -14,7 +14,8 @@ public class FileValidator {
         String filename = file.getFile().getOriginalFilename();
         String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length());
         return extension.equals("txt") || extension.equals("rtf") || extension.equals("doc")
-                || extension.equals("odt") || extension.equals("pdf") || extension.equals("docx");
+                || extension.equals("odt") || extension.equals("pdf") || extension.equals("docx")
+                && !extension.equals("jpg") && !extension.equals("png") && !extension.equals("bmp");
     }
 
     public static boolean hasImageFormat(FileModel file){
