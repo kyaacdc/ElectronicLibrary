@@ -25,10 +25,7 @@ public class FileValidator {
 
     public static boolean hasValidImageResolution(FileModel file, String uploadPath) throws IOException {
         String filename = file.getFile().getOriginalFilename();
-        //File image = new File(PropertyAccessor.getPathForFileUpload()
-        //        + File.separator + "temp" + File.separator + filename);
         File image = new File(uploadPath + filename);
-
         FileCopyUtils.copy(file.getFile().getBytes(), image);
         BufferedImage bimg = ImageIO.read(image);
         int width = bimg.getWidth();

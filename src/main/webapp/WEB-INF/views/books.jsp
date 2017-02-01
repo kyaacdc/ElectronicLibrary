@@ -127,22 +127,24 @@
                 <td>
                     <form action="/fileUpload">
                         <input type="hidden" name="id" value=${book.id}>
+                        <input type="hidden" name="isimage" value=1>
                         <input type="submit" value="Upload"/>
                     </form>
                     <form action="/fileDownload">
                         <input type="hidden" name="id" value=${book.id}>
-                        <input type="hidden" name="isImage" value=1>
+                        <input type="hidden" name="isimage" value=1>
                         <input type="submit" value="Download"/>
                     </form>
                 </td>
                 <td>
                     <form action="/fileUpload">
                         <input type="hidden" name="id" value=${book.id}>
+                        <input type="hidden" name="isimage" value=0>
                         <input type="submit" value="Upload"/>
                     </form>
                     <form action="/fileDownload">
                         <input type="hidden" name="id" value=${book.id}>
-                        <input type="hidden" name="isImage" value=0>
+                        <input type="hidden" name="isimage" value=0>
                         <input type="submit" value="Download"/>
                     </form>
                 </td>

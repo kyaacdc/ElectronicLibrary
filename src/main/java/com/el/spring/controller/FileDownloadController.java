@@ -27,7 +27,7 @@ public class FileDownloadController {
 
    @RequestMapping(value={"/fileDownload"}, method = RequestMethod.GET)
    public String getHomePage(@RequestParam("id") int id,
-                             @RequestParam("isImage") int isImage, ModelMap model) {
+                             @RequestParam("isimage") int isImage, ModelMap model) {
        filepath = (isImage == 1) ? bookService.getBookById(id).getImage() : bookService.getBookById(id).getPath();
        return "fileDownload";
     }

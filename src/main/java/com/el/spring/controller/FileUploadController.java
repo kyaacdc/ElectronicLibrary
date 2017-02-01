@@ -27,16 +27,19 @@ public class FileUploadController {
     private BookService bookService;
 
     private Book book;
+    boolean isImage = false;
 
     @RequestMapping(value = "/fileUpload", method = RequestMethod.GET)
-    public ModelAndView fileUploadPage(@RequestParam("id") int id) {
+    public ModelAndView fileUploadPage(@RequestParam("id") int id,
+                                       @RequestParam("isimage") int isimage) {
+        isImage = (isimage == 1);
         book = bookService.getBookById(id);
         FileModel file = new FileModel();
         ModelAndView modelAndView = new ModelAndView("fileUpload", "command", file);
         return modelAndView;
     }
 
-    @RequestMapping(value="/fileUpload", method = RequestMethod.POST)
+    @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
     public String fileUpload(@Validated FileModel file, BindingResult result, ModelMap model) throws IOException {
 
         if (result.hasErrors()) {
@@ -46,29 +49,37 @@ public class FileUploadController {
             System.out.println("Fetching file");
             MultipartFile multipartFile = file.getFile();
 
-            boolean isImage = FileValidator.hasImageFormat(file);
+            String uploadPath = "";
+            String originalFilename = "";
+            String path = "";
+            String fileName = "";
 
-            String uploadPath = (isImage) ?
-                    (context.getRealPath("") + "resources/images" + File.separator) :
-                    (context.getRealPath("") + "resources/books" + File.separator);
-
-            if(FileValidator.hasBookFormat(file) || FileValidator.hasValidImageResolution(file, uploadPath)) {
-                String originalFilename = file.getFile().getOriginalFilename();
-                String path = uploadPath + originalFilename;
-                FileCopyUtils.copy(file.getFile().getBytes(), new File(path));
-                String fileName = multipartFile.getOriginalFilename();
-                model.addAttribute("fileName", fileName);
-
-                if(isImage)
+            if (isImage) {
+                uploadPath = (context.getRealPath("") + "resources/images" + File.separator);
+                if (FileValidator.hasValidImageResolution(file, uploadPath)) {
+                    originalFilename = file.getFile().getOriginalFilename();
+                    path = uploadPath + originalFilename;
+                    FileCopyUtils.copy(file.getFile().getBytes(), new File(path));
+                    fileName = multipartFile.getOriginalFilename();
+                    model.addAttribute("fileName", fileName);
                     book.setImage("/resources/images/" + originalFilename);
-                else
-                    book.setPath("/resources/books/" + originalFilename);
-
-                bookService.updateBook(book);
-                
-                return "success";
+                } else
+                    return "imageNotValid";
+            } else if (FileValidator.hasBookFormat(file)) {
+                uploadPath = (context.getRealPath("") + "resources/books" + File.separator);
+                originalFilename = file.getFile().getOriginalFilename();
+                path = uploadPath + originalFilename;
+                FileCopyUtils.copy(file.getFile().getBytes(), new File(path));
+                fileName = multipartFile.getOriginalFilename();
+                model.addAttribute("fileName", fileName);
+                book.setPath("/resources/books/" + originalFilename);
             } else
-                return "imageNotValid";
+                return "Not valid format";
+
+            bookService.updateBook(book);
+
+            return "success";
         }
     }
+
 }
