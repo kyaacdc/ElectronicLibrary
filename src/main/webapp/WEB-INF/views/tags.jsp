@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-<a href="/welcome">Back to main menu</a>
+<a href="/manage">Back to admin menu</a>
 
 <h1>Tags List</h1>
 
