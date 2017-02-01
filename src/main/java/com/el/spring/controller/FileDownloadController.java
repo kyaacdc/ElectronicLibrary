@@ -34,7 +34,7 @@ public class FileDownloadController {
 
     /*
      * Download a file from
-     *   - inside project, located in resources folder.
+     *   inside project, located in resources folder.
      */
     @RequestMapping(value="/download/{type}", method = RequestMethod.GET)
     public void downloadFile(HttpServletResponse response, @PathVariable("type") String type) throws IOException {
@@ -42,7 +42,7 @@ public class FileDownloadController {
         File file = new File(context.getRealPath("") + filepath);
 
         if(!file.exists()){
-            String errorMessage = "Sorry. The file you are looking for does not exist" + filepath;
+            String errorMessage = "Sorry. The file you are looking for does not exist";
             System.out.println(errorMessage);
             OutputStream outputStream = response.getOutputStream();
             outputStream.write(errorMessage.getBytes(Charset.forName("UTF-8")));

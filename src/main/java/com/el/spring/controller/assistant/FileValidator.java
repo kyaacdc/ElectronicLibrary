@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-//import com.el.spring.util.PropertyAccessor;
 import org.springframework.util.FileCopyUtils;
 
 public class FileValidator {

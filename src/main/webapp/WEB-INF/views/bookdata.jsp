@@ -70,8 +70,14 @@
     <td>${book.bookAuthor}</td>
     <td>${book.isbn}</td>
     <td>${book.descr}</td>
-    <td>${book.image}</td>
-    <td>${book.path}</td>
+    <td>$<img src="${book.image}"/></td>
+    <td>
+      <form action="/fileDownload">
+        <input type="hidden" name="id" value=${book.id}>
+        <input type="hidden" name="isimage" value=0>
+        <input type="submit" value="Download"/>
+      </form>
+    </td>
     <td>${book.likes}
       <form action="/changeRate">
         <p>
