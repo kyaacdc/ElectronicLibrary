@@ -67,9 +67,7 @@ public class BookServiceImpl implements BookService {
     @Transactional
     @SuppressWarnings("unchecked")
     public List<Book> listBooks() {
-        List<Book> list = bookDao.findAll();
-        list.sort(SORT_BY_TITLE);
-        return list;
+        return  bookDao.findAll();
     }
 
     @Override

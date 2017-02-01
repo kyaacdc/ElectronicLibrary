@@ -1,14 +1,10 @@
 package com.el.spring.controller;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 import com.el.spring.service.BookService;
@@ -16,13 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class FileDownloadController {
+
+    @Autowired
+    private ServletContext context;
 
     @Autowired
     private BookService bookService;
@@ -30,23 +26,23 @@ public class FileDownloadController {
     private String filepath = "";
 
    @RequestMapping(value={"/fileDownload"}, method = RequestMethod.GET)
-   public String getHomePage(@RequestParam("id") int id, ModelMap model) {
-       filepath = bookService.getBookById(id).getPath();
+   public String getHomePage(@RequestParam("id") int id,
+                             @RequestParam("isImage") int isImage, ModelMap model) {
+       filepath = (isImage == 1) ? bookService.getBookById(id).getImage() : bookService.getBookById(id).getPath();
        return "fileDownload";
     }
 
     /*
      * Download a file from
      *   - inside project, located in resources folder.
-     *   - outside project, located in File system somewhere.
      */
     @RequestMapping(value="/download/{type}", method = RequestMethod.GET)
     public void downloadFile(HttpServletResponse response, @PathVariable("type") String type) throws IOException {
 
-        File file = new File(filepath);
+        File file = new File(context.getRealPath("") + filepath);
 
         if(!file.exists()){
-            String errorMessage = "Sorry. The file you are looking for does not exist";
+            String errorMessage = "Sorry. The file you are looking for does not exist" + filepath;
             System.out.println(errorMessage);
             OutputStream outputStream = response.getOutputStream();
             outputStream.write(errorMessage.getBytes(Charset.forName("UTF-8")));

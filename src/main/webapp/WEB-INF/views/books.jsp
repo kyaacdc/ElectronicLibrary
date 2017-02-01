@@ -131,6 +131,7 @@
                     </form>
                     <form action="/fileDownload">
                         <input type="hidden" name="id" value=${book.id}>
+                        <input type="hidden" name="isImage" value=1>
                         <input type="submit" value="Download"/>
                     </form>
                 </td>
@@ -141,6 +142,7 @@
                     </form>
                     <form action="/fileDownload">
                         <input type="hidden" name="id" value=${book.id}>
+                        <input type="hidden" name="isImage" value=0>
                         <input type="submit" value="Download"/>
                     </form>
                 </td>

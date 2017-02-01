@@ -122,7 +122,9 @@
                 <td>${book.bookAuthor}</td>
                 <td>${book.isbn}</td>
                 <td>${book.descr}</td>
-                <td>${book.image}</td>
+                <td>
+                    <img src="${book.image}"/>
+                </td>
                 <td>${book.path}</td>
                 <td>${book.likes}</td>
                 <td>${book.dislikes}</td>

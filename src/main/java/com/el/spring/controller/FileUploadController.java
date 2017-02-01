@@ -1,8 +1,6 @@
 package com.el.spring.controller;
 
-import com.el.spring.util.PropertyAccessor;
-import com.el.spring.controller.assistant.FileValidator;
-import com.el.spring.controller.assistant.FileModel;
+import com.el.spring.controller.assistant.*;
 import com.el.spring.entity.Book;
 import com.el.spring.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,19 +45,24 @@ public class FileUploadController {
         } else {
             System.out.println("Fetching file");
             MultipartFile multipartFile = file.getFile();
-            String uploadPath = PropertyAccessor.getPathForFileUpload()
-                    + File.separator + "temp" + File.separator;
 
-            if(FileValidator.hasBookFormat(file) || FileValidator.hasValidImageResolution(file)) {
-                String path = uploadPath + file.getFile().getOriginalFilename();
+            boolean isImage = FileValidator.hasImageFormat(file);
+
+            String uploadPath = (isImage) ?
+                    (context.getRealPath("") + "resources/images" + File.separator) :
+                    (context.getRealPath("") + "resources/books" + File.separator);
+
+            if(FileValidator.hasBookFormat(file) || FileValidator.hasValidImageResolution(file, uploadPath)) {
+                String originalFilename = file.getFile().getOriginalFilename();
+                String path = uploadPath + originalFilename;
                 FileCopyUtils.copy(file.getFile().getBytes(), new File(path));
                 String fileName = multipartFile.getOriginalFilename();
                 model.addAttribute("fileName", fileName);
 
-                if(FileValidator.hasImageFormat(file))
-                    book.setImage(path);
+                if(isImage)
+                    book.setImage("/resources/images/" + originalFilename);
                 else
-                    book.setPath(path);;
+                    book.setPath("/resources/books/" + originalFilename);
 
                 bookService.updateBook(book);
                 

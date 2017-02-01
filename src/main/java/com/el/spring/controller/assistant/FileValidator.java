@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import com.el.spring.util.PropertyAccessor;
+//import com.el.spring.util.PropertyAccessor;
 import org.springframework.util.FileCopyUtils;
 
 public class FileValidator {
@@ -23,10 +23,12 @@ public class FileValidator {
         return extension.equals("jpg") || extension.equals("png") || extension.equals("bmp");
     }
 
-    public static boolean hasValidImageResolution(FileModel file) throws IOException {
+    public static boolean hasValidImageResolution(FileModel file, String uploadPath) throws IOException {
         String filename = file.getFile().getOriginalFilename();
-        File image = new File(PropertyAccessor.getPathForFileUpload()
-                + File.separator + "temp" + File.separator + filename);
+        //File image = new File(PropertyAccessor.getPathForFileUpload()
+        //        + File.separator + "temp" + File.separator + filename);
+        File image = new File(uploadPath + filename);
+
         FileCopyUtils.copy(file.getFile().getBytes(), image);
         BufferedImage bimg = ImageIO.read(image);
         int width = bimg.getWidth();
