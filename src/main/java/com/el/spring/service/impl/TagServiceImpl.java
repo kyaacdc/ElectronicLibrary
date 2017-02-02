@@ -4,6 +4,7 @@ import com.el.spring.daoRepository.TagDao;
 import com.el.spring.entity.Tag;
 import com.el.spring.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
+@Component
 public class TagServiceImpl implements TagService{
 
     @Autowired
