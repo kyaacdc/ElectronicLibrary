@@ -49,6 +49,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public Comment getCommentByDescription(String description) {
+        return commentDao.findCommentByDescription(description);
+    }
+
+    @Override
     public List<Comment> listCommentsByBookReversed(int id) {
 
         List<Comment> list = listComments().stream()

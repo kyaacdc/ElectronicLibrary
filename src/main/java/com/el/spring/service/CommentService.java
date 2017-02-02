@@ -13,6 +13,8 @@ public interface CommentService {
 
     Comment getCommentById(int id);
 
+    Comment getCommentByDescription(String description);
+
     List<Comment> listCommentsByBookReversed(int id);
 
     List<Comment> listComments();
