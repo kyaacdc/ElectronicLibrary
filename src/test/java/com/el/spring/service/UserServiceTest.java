@@ -1,17 +1,12 @@
 package com.el.spring.service;
 
-import com.el.spring.entity.Role;
 import com.el.spring.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
 import javax.annotation.Resource;
-
-import java.util.List;
-
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
@@ -27,25 +22,22 @@ public class UserServiceTest {
     @Test
     public void testSaveUser() throws Exception {
         User user = new User("testuser11111", "testpass1", "testpass1", null);
-        userService.addUser(user);
+        userService.save(user);
         user = userService.findByUsername("testuser11111");
+
         assertThat(user.getUsername(), is(equalTo("testuser11111")));
+
         userService.removeUser(user.getId());
     }
 
     @Test
-    public void testEditUser() throws Exception {
-
+    public void testEditOrAddUser() throws Exception {
         User user = new User("testuser11111", "testpass1", "testpass1", null);
         userService.addUser(user);
-
         int id = userService.findByUsername("testuser11111").getId();
-
         user = new User("testuser66666", "testpass1", "testpass1", null);
         user.setId(id);
-
         userService.updateUser(user);
-
         user = userService.findByUsername("testuser66666");
 
         assertTrue(user.getId() == id);
@@ -59,25 +51,29 @@ public class UserServiceTest {
         userService.addUser(user);
         int id = userService.findByUsername("testuser11111").getId();
         userService.removeUser(user.getId());
+
         assertThat(userService.getUserById(id), is(nullValue()));
     }
 
     @Test
     public void testGetAllUser() throws Exception {
-        List<User> users = userService.listUsers();
-        users.forEach(System.out::println);
+        User user = new User("testuser11111", "testpass1", "testpass1", null);
+        userService.addUser(user);
+
+        assertThat(userService.listUsers(), is(not(nullValue())));
+
+        int id = userService.findByUsername("testuser11111").getId();
+        userService.removeUser(id);
     }
 
     @Test
     public void testGetUserById() throws Exception {
-        User user = new User("testuser2", "testpass1", "testpass1", null);
-        user.setId(555);
-        userService.getUserById(555);
+        User user = new User("testuser11111", "testpass1", "testpass1", null);
+        userService.addUser(user);
+        int id = userService.findByUsername("testuser11111").getId();
 
-        assertTrue(userService.getUserById(555).equals(user));
+        assertTrue(userService.getUserById(id).getUsername().equals("testuser11111"));
 
-
-        //assertEquals(user.getUsername(), "testuser1");
+        userService.removeUser(id);
     }
 }
-
