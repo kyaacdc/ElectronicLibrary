@@ -33,16 +33,20 @@ public class UserServiceTest {
 
     @Test
     public void testEditUser() throws Exception {
+
         User user = new User("testuser11111", "testpass1", "testpass1", null);
         userService.addUser(user);
-        user = userService.findByUsername("testuser11111");
-        int id = user.getId();
-        User user2 = new User("testuser22222", "testpass2", "testpass2", null);
-        user2.setId(id);
-        userService.updateUser(user2);
-        user = userService.findByUsername("testuser22222");
 
-        assertThat(user.getId(), is(equalTo(id)));
+        int id = userService.findByUsername("testuser11111").getId();
+
+        user = new User("testuser66666", "testpass1", "testpass1", null);
+        user.setId(id);
+
+        userService.updateUser(user);
+
+        user = userService.findByUsername("testuser66666");
+
+        assertTrue(user.getId() == id);
 
         userService.removeUser(id);
     }
