@@ -47,4 +47,13 @@ public class Tag {
     public void setBookid(int bookid) {
         this.bookid = bookid;
     }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "id=" + id +
+                ", tagname='" + tagname + '\'' +
+                ", bookid=" + bookid +
+                '}';
+    }
 }

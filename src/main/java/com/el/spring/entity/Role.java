@@ -20,6 +20,11 @@ public class Role {
     public Role() {
     }
 
+    public Role(String name, Set<User> users) {
+        this.name = name;
+        this.users = users;
+    }
+
     public int getId() {
         return id;
     }
@@ -42,5 +47,14 @@ public class Role {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", users=" + users +
+                '}';
     }
 }

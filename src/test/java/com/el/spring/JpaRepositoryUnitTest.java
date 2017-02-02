@@ -21,7 +21,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
-import org.springframework.data.jpa.repository.query.JpaEntityGraph;
 import org.springframework.data.jpa.repository.support.CrudMethodMetadata;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -115,8 +114,8 @@ public class JpaRepositoryUnitTest {
         String entityGraphName = "User.detail";
         when(entityGraphAnnotation.value()).thenReturn(entityGraphName);
         when(entityGraphAnnotation.type()).thenReturn(EntityGraphType.LOAD);
-        when(metadata.getEntityGraph()).thenReturn((JpaEntityGraph) entityGraphAnnotation);
-        //when(em.getEntityGraph(entityGraphName)).thenReturn( entityGraph);
+        //when(metadata.getEntityGraph()).thenReturn(entityGraphAnnotation);
+        when(em.getEntityGraph(entityGraphName)).thenReturn((EntityGraph) entityGraph);
         when(information.getEntityName()).thenReturn("User");
         //when(metadata.getMethod()).thenReturn(CrudRepository.class.getMethod("findOne", Serializable.class));
 

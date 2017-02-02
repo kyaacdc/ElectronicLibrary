@@ -19,16 +19,7 @@ import java.util.List;
 public class TagServiceTests {
 
     @Resource
-    private EntityManagerFactory emf;
-    private EntityManager em;
-
-    @Resource
     private TagService tagService;
-
-    @Before
-    public void setUp() throws Exception {
-        em = emf.createEntityManager();
-    }
 
     @Test
     public void testSaveTag() throws Exception {
