@@ -1,7 +1,7 @@
-package com.el.spring.service;
+package com.el.spring.service.impl;
 
 import com.el.spring.entity.Tag;
-import org.junit.Before;
+import com.el.spring.service.TagService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -9,10 +9,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.annotation.Resource;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import java.util.List;
-
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -20,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration("file:src/main/webapp/WEB-INF/appconfig-root.xml")
-public class TagServiceTests {
+public class TagServiceImplTests {
 
     @Resource
     private TagService tagService;

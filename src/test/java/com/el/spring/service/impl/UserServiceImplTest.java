@@ -1,6 +1,7 @@
-package com.el.spring.service;
+package com.el.spring.service.impl;
 
 import com.el.spring.entity.User;
+import com.el.spring.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,7 +15,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration("file:src/main/webapp/WEB-INF/appconfig-root.xml")
-public class UserServiceTest {
+public class UserServiceImplTest {
 
     @Resource
     private UserService userService;

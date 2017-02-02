@@ -12,7 +12,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.el.spring.service.impl.enums.EnumFindCriteria.*;
-import static com.el.spring.service.impl.enums.EnumBookSort.*;
 
 
 @Service
@@ -50,6 +49,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book getBookById(int id) {
         return bookDao.findBookById(id);
+    }
+
+    @Override
+    public Book getBookByBookTitle(String bookTitle) {
+        return bookDao.findBookByBookTitle(bookTitle);
     }
 
     @Override

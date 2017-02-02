@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-@Component
 public class TagServiceImpl implements TagService{
 
     @Autowired

@@ -19,6 +19,8 @@ public interface BookService {
 
     Book getBookById(int id);
 
+    Book getBookByBookTitle(String bookTitle);
+
     Book getExactlyBookByTitle(String searchValue);
 
     List<Book> listSortedBooks(EnumBookSort criteria);
