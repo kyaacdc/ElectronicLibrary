@@ -48,6 +48,11 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
+    public Tag getTagByName(String name) {
+        return tagDao.findByTagname(name);
+    }
+
+    @Override
     @Transactional
     @SuppressWarnings("unchecked")
     public List<Tag> listTags() {

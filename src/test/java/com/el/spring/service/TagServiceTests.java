@@ -13,6 +13,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration("file:src/main/webapp/WEB-INF/appconfig-root.xml")
@@ -23,44 +27,69 @@ public class TagServiceTests {
 
     @Test
     public void testSaveTag() throws Exception {
-        tagService.addTag(new Tag("tag1", 1));
+        Tag tag = new Tag("tag1", 1);
+        tagService.addTag(tag);
+        tag = tagService.getTagByName("tag1");
+
+        assertThat(tag.getTagname(), is(equalTo("tag1")));
+
+        tagService.removeTag(tag.getId());
     }
 
     @Test
     public void testEditTag() throws Exception {
-        tagService.addTag(new Tag("tag1", 1));
-        tagService.updateTag(new Tag("tag11", 1));
-        tagService.removeTag(1);
+        Tag tag = new Tag("tag1", 1);
+        tagService.addTag(tag);
+        int id = tagService.getTagByName("tag1").getId();
+        tag = new Tag("tag2", 2);
+        tag.setId(id);
+        tagService.updateTag(tag);
+        tag = tagService.getTagByName("tag2");
+
+        assertTrue(tag.getId() == id);
+
+        tagService.removeTag(id);
     }
 
     @Test
     public void testDeleteTag() throws Exception {
-        tagService.addTag(new Tag("tag1", 2));
-        tagService.removeTag(2);
+        Tag tag = new Tag("tag1", 1);
+        tagService.addTag(tag);
+        int id = tagService.getTagByName("tag1").getId();
+        tagService.removeTag(id);
+        assertThat(tagService.getTagById(id), is(nullValue()));
     }
 
     @Test
     public void testGetAllTags() throws Exception {
-        tagService.addTag(new Tag("tag1", 1));
-        tagService.addTag(new Tag("tag2", 2));
-        tagService.addTag(new Tag("tag3", 3));
+        Tag tag = new Tag("tag1", 1);
+        tagService.addTag(tag);
 
-        List<Tag> list = tagService.listTags();
-        list.forEach(System.out::println);
+        assertThat(tagService.listTags(), is(not(nullValue())));
 
-        list.forEach(a -> tagService.removeTag(a.getId()));
+        int id = tagService.getTagByName("tag1").getId();
+        tagService.removeTag(id);
     }
 
     @Test
     public void testGetTagById() throws Exception {
-        tagService.addTag(new Tag("tag1", 1));
-        tagService.addTag(new Tag("tag2", 2));
-        tagService.addTag(new Tag("tag3", 3));
+        Tag tag = new Tag("tag1", 1);
+        tagService.addTag(tag);
+        int id = tagService.getTagByName("tag1").getId();
 
-        tagService.getTagById(2);
+        assertTrue(tagService.getTagById(id).getTagname().equals("tag1"));
 
-        tagService.listTags().forEach(a -> tagService.removeTag(a.getId()));
+        tagService.removeTag(id);
+    }
 
+    @Test
+    public void testGetTagByName() throws Exception {
+        Tag tag = new Tag("tag1", 1);
+        tagService.addTag(tag);
+        tag = tagService.getTagByName("tag1");
+        assertTrue(tag.getTagname().equals("tag1"));
+
+        tagService.removeTag(tag.getId());
     }
 }
 
