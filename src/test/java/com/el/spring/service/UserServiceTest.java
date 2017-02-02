@@ -28,20 +28,23 @@ public class UserServiceTest {
         userService.addUser(user);
         user = userService.findByUsername("testuser11111");
         assertThat(user.getUsername(), is(equalTo("testuser11111")));
-
         userService.removeUser(user.getId());
     }
 
     @Test
     public void testEditUser() throws Exception {
-        User user = new User("testuser1", "testpass1", "testpass1", null);
-        user.setId(555);
+        User user = new User("testuser11111", "testpass1", "testpass1", null);
         userService.addUser(user);
-
-        User user2 = new User("testuser2", "testpass2", "testpass2", null);
-        user2.setId(555);
-
+        user = userService.findByUsername("testuser11111");
+        int id = user.getId();
+        User user2 = new User("testuser22222", "testpass2", "testpass2", null);
+        user2.setId(id);
         userService.updateUser(user2);
+        user = userService.findByUsername("testuser22222");
+
+        assertThat(user.getId(), is(equalTo(id)));
+
+        userService.removeUser(id);
     }
 
     @Test
