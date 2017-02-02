@@ -5,11 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <import resource="appconfig-mvc.xml"/>
-
-    <import resource="appconfig-data.xml"/>
-
-    <import resource="appconfig-security.xml"/>
 
     <import resource="testconfig.xml"/>
 
