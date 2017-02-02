@@ -10,6 +10,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
@@ -53,22 +55,17 @@ public class UserServiceTest {
 
     @Test
     public void testDeleteUser() throws Exception {
-        User user = new User("testuser1", "testpass1", "testpass1", null);
-        user.setId(555);
+        User user = new User("testuser11111", "testpass1", "testpass1", null);
         userService.addUser(user);
-
-        userService.removeUser(555);
-
-        //assertFalse();
+        int id = userService.findByUsername("testuser11111").getId();
+        userService.removeUser(user.getId());
+        assertThat(userService.getUserById(id), is(nullValue()));
     }
 
     @Test
     public void testGetAllUser() throws Exception {
-        userService.addUser(new User("testuser1", "testpass1", "testpass1", null));
-        userService.addUser(new User("testuser2", "testpass1", "testpass1", null));
-        userService.addUser(new User("testuser3", "testpass1", "testpass1", null));
-
-        userService.listUsers();
+        List<User> users = userService.listUsers();
+        users.forEach(System.out::println);
     }
 
     @Test
