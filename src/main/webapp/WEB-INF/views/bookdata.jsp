@@ -128,6 +128,7 @@
       <tr>
         <th width="40">User</th>
         <th width="1200">Comment</th>
+        <th width="1200">CommentID</th>
       </tr>
       <c:forEach items="${listComments}" var="comment">
         <tr>
@@ -139,6 +140,7 @@
             </c:forEach>
           </td>
           <td>${comment.description}</td>
+          <td>${comment.id}</td>
         </tr>
       </c:forEach>
     </table>

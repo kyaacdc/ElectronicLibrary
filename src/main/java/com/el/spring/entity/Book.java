@@ -108,5 +108,20 @@ public class Book {
     public void setDislikes(int dislikes) {
         this.dislikes = dislikes;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", bookTitle='" + bookTitle + '\'' +
+                ", bookAuthor='" + bookAuthor + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", descr='" + descr + '\'' +
+                ", image='" + image + '\'' +
+                ", path='" + path + '\'' +
+                ", likes=" + likes +
+                ", dislikes=" + dislikes +
+                '}';
+    }
 }
 

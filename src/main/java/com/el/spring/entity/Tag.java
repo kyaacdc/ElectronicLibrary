@@ -19,6 +19,11 @@ public class Tag {
     public Tag() {
     }
 
+    public Tag(String tagname, int bookid) {
+        this.tagname = tagname;
+        this.bookid = bookid;
+    }
+
     public int getId() {
         return id;
     }

@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-<a href="/welcome">Back to main menu</a>
+<a href="/manage">Back to main menu</a>
 
 <h1>Users List</h1>
 
