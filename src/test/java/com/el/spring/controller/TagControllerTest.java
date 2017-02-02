@@ -21,8 +21,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestContext.class}, locations = {"file:src/main/webapp/WEB-INF/appconfig-root.xml"})
 @WebAppConfiguration
+@ContextConfiguration("file:src/main/webapp/WEB-INF/appconfig-root.xml")
 public class TagControllerTest {
 
     private MockMvc mockMvc;
