@@ -58,6 +58,7 @@ public class CommentServiceImplTest {
         commentService.addComment(comment);
         int id = commentService.getCommentByDescription("dscrip1").getId();
         commentService.removeComment(id);
+
         assertThat(commentService.getCommentById(id), is(nullValue()));
     }
 
@@ -88,6 +89,9 @@ public class CommentServiceImplTest {
         List<Comment> comments = commentService.listCommentsByBookReversed(1);
 
         assertThat(comments.get(0).getDescription(), is(isOneOf("dscrip1", "dscrip2")));
+
+        commentService.removeComment(commentService.getCommentByDescription("dscrip1").getId());
+        commentService.removeComment(commentService.getCommentByDescription("dscrip2").getId());
     }
 
     @Test
@@ -101,5 +105,4 @@ public class CommentServiceImplTest {
 
         commentService.removeComment(id);
     }
-
 }
