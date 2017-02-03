@@ -1,0 +1,11 @@
+This is web application of Electronic Library with using next technologies:
+- Java 8
+- Spring MVC
+- Spring Security
+- Spring Data
+- Hibernate
+- MySQL
+- JSP
+- Maven
+- JUnit
+- Apache Commons
