@@ -4,7 +4,7 @@ import com.el.spring.entity.Tag;
 import java.util.List;
 
 public interface TagService {
-    void addTag(Tag tag);
+    Tag addTag(Tag tag);
 
     void updateTag(Tag tag);
 

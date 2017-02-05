@@ -1,5 +1,5 @@
 This is web application of Electronic Library with using next technologies:
-- Java 8
+- Java 8 (Lyambdas, Stream API)
 - Spring MVC
 - Spring Security
 - Spring Data

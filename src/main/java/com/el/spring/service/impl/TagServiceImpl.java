@@ -19,11 +19,12 @@ public class TagServiceImpl implements TagService{
 
     @Override
     @Transactional
-    public void addTag(Tag tag) {
+    public Tag addTag(Tag tag) {
         if(tagDao.findOne(tag.getId()) == null)
             tagDao.save(tag);
         else
             throw new NoSuchElementException();
+        return tagDao.getOne(tagDao.findByTagname(tag.getTagname()).getId());
     }
 
     @Override
