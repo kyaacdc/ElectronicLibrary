@@ -1,5 +1,7 @@
 package com.el.spring.entity;
 
+import com.el.spring.entity.util.Name;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ public class User{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Name
     @Column(name = "username")
     private String username;
 

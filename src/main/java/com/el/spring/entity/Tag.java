@@ -1,5 +1,7 @@
 package com.el.spring.entity;
 
+import com.el.spring.entity.util.Name;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Name
     @Column(name = "tagname")
     private String tagname;
 

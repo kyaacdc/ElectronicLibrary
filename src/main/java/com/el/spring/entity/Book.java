@@ -1,5 +1,6 @@
 package com.el.spring.entity;
 
+import com.el.spring.entity.util.Name;
 import com.el.spring.entity.util.Isbn;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Book {
     @Column(name = "bookTitle")
     private String bookTitle;
 
+    @Name
     @Column(name = "bookAuthor")
     private String bookAuthor;
 

@@ -5,6 +5,7 @@ import com.el.spring.service.BookService;
 import com.el.spring.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,10 +34,14 @@ public class TagController {
 
     @RequestMapping(value = "/tags/add", method = RequestMethod.POST)
     public String addTag(@ModelAttribute("tag") Tag tag) {
-        if (tag.getId() == 0) {
-            tagService.addTag(tag);
-        } else {
-            tagService.updateTag(tag);
+        try {
+            if (tag.getId() == 0) {
+                tagService.addTag(tag);
+            } else {
+                tagService.updateTag(tag);
+            }
+        } catch (TransactionSystemException e) {
+            return "errorinput";
         }
 
         return "redirect:/tags";

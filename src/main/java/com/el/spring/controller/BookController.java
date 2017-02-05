@@ -49,7 +49,7 @@ public class BookController {
                 bookService.updateBook(book);
             }
         } catch (TransactionSystemException e) {
-            return "errorinputbook";
+            return "errorinput";
         }
 
         return "redirect:/books";

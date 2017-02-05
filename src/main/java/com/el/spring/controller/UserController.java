@@ -6,6 +6,7 @@ import com.el.spring.service.SecurityService;
 import com.el.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -75,11 +76,10 @@ public class UserController {
     }
 
 
-
     //Operations with users
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String listUsers(Model model){
+    public String listUsers(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", userService.listUsers());
 
@@ -87,25 +87,29 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user){
-        if(user.getId() == 0){
-            userService.addUser(user);
-        }else {
-            userService.updateUser(user);
+    public String addUser(@ModelAttribute("user") User user) {
+        try {
+            if (user.getId() == 0) {
+                userService.addUser(user);
+            } else {
+                userService.updateUser(user);
+            }
+        } catch (TransactionSystemException e) {
+            return "errorinput";
         }
 
         return "redirect:/users";
     }
 
     @RequestMapping("/users/remove/{id}")
-    public String removeUser(@PathVariable("id") int id){
+    public String removeUser(@PathVariable("id") int id) {
         userService.removeUser(id);
 
         return "redirect:/users";
     }
 
     @RequestMapping("/users/edit/{id}")
-    public String editUser(@PathVariable("id") int id, Model model){
+    public String editUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("listUsers", userService.listUsers());
 
