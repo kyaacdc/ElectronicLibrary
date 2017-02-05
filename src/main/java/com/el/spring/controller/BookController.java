@@ -4,6 +4,7 @@ import com.el.spring.entity.Book;
 import com.el.spring.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.NoSuchElementException;
@@ -41,10 +42,14 @@ public class BookController {
 
     @RequestMapping(value = "/books/add", method = RequestMethod.POST)
     public String addBook(@ModelAttribute("book") Book book){
-        if(book.getId() == 0){
-            bookService.addBook(book);
-        }else {
-            bookService.updateBook(book);
+        try {
+            if (book.getId() == 0) {
+                bookService.addBook(book);
+            } else {
+                bookService.updateBook(book);
+            }
+        } catch (TransactionSystemException e) {
+            return "errorinputbook";
         }
 
         return "redirect:/books";
@@ -86,7 +91,7 @@ public class BookController {
             switch (findOption) {
                 case 1: {
                     model.addAttribute("book", bookService.getExactlyBookByTitle(searchValue));
-                    return "/bookfind";
+                    return "bookdata";
                 }
                 case 2: {
                     model.addAttribute("listBooks", bookService.listBookByCriteria(searchValue, TITLE));

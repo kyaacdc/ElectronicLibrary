@@ -22,14 +22,14 @@
 <div class="container">
     <h1>Welcome to Manage Panel of Electronic Library</h1>
     <br><br>
-    <a href="<c:url value="/maincontent"/>" target="_blank"><h4>View Books</h4></a><br><br><br>
-    <a href="<c:url value="/books"/>" target="_blank"><h4>Manage Books</h4></a>
+    <a href="<c:url value="/maincontent"/>" ><h4>View Books</h4></a><br><br><br>
+    <a href="<c:url value="/books"/>"><h4>Manage Books</h4></a>
     <br><br><br>
-    <a href="<c:url value="/users"/>" target="_blank"><h4>Manage Users</h4></a>
+    <a href="<c:url value="/users"/>"><h4>Manage Users</h4></a>
     <br><br><br>
-    <a href="<c:url value="/tags"/>" target="_blank"><h4>Manage Tags</h4></a>
+    <a href="<c:url value="/tags"/>"><h4>Manage Tags</h4></a>
     <br><br><br>
-    <a href="<c:url value="/comments"/>" target="_blank"><h4>Manage Comments</h4></a>
+    <a href="<c:url value="/comments"/>"><h4>Manage Comments</h4></a>
 
 </div>
 <br><br><br><br><br><br>

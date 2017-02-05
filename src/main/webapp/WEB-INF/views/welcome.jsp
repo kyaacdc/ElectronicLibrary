@@ -32,9 +32,9 @@
     </c:if>
 
     <br><br>
-    <a href="<c:url value="/maincontent"/>" target="_blank"><h1>Looking for Books</h1></a><br><br><br>
+    <a href="<c:url value="/maincontent"/>"><h1>Looking for Books</h1></a><br><br><br>
 
-    <a href="<c:url value="/manage"/>" target="_blank"><h4>Management Admin Panel (only for administrators)</h4></a>
+    <a href="<c:url value="/manage"/>"><h4>Management Admin Panel (only for administrators)</h4></a>
 
 
 
