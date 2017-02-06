@@ -55,14 +55,14 @@
 <table class="tg">
   <tr>
     <th width="80">ID</th>
-    <th width="120">Title</th>
-    <th width="120">Author</th>
-    <th width="120">ISBN</th>
-    <th width="80">Description</th>
+    <th width="100">Title</th>
+    <th width="100">Author</th>
+    <th width="80">ISBN</th>
+    <th width="200">Description</th>
     <th width="120">Image</th>
     <th width="120">Path</th>
-    <th width="120">Likes</th>
-    <th width="120">Dislikes</th>
+    <th width="60">Likes</th>
+    <th width="60">Dislikes</th>
   </tr>
   <tr>
     <td>${book.id}</td>
@@ -70,7 +70,7 @@
     <td>${book.bookAuthor}</td>
     <td>${book.isbn}</td>
     <td>${book.descr}</td>
-    <td>$<img src="${book.image}"/></td>
+    <td><img src="${book.image}"/></td>
     <td>
       <form action="/fileDownload">
         <input type="hidden" name="id" value=${book.id}>

@@ -49,36 +49,7 @@
 <body>
 <a href="/manage">Back to admin menu</a>
 
-<h1>Tags List</h1>
-
-<c:if test="${!empty listTags}">
-    <table class="tg">
-        <tr>
-            <th width="80">ID</th>
-            <th width="120">name</th>
-            <th width="120">BookName</th>
-            <th width="60">Edit</th>
-            <th width="60">Delete</th>
-        </tr>
-        <c:forEach items="${listTags}" var="tag">
-            <tr>
-                <td>${tag.id}</td>
-                <td>${tag.tagname}</td>
-                <td>
-                    <c:forEach items="${listBooks}" var="book">
-                        <c:if test="${book.id == tag.bookid}">
-                            ${book.bookTitle}
-                        </c:if>
-                    </c:forEach>
-                </td>
-                <td><a href="<c:url value='/tags/edit/${tag.id}'/>">Edit</a></td>
-                <td><a href="<c:url value='/tags/remove/${tag.id}'/>">Delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
-
-<h2>Add or Update Tag Info</h2>
+<h2>Add/Edit Tag Info</h2>
 
 <c:url var="addAction" value="/tags/add"/>
 
@@ -131,6 +102,37 @@
         </tr>
     </table>
 </form:form>
+
+<h1>Tags List</h1>
+
+<c:if test="${!empty listTags}">
+    <table class="tg">
+        <tr>
+            <th width="80">ID</th>
+            <th width="120">name</th>
+            <th width="120">BookName</th>
+            <th width="60">Edit</th>
+            <th width="60">Delete</th>
+        </tr>
+        <c:forEach items="${listTags}" var="tag">
+            <tr>
+                <td>${tag.id}</td>
+                <td>${tag.tagname}</td>
+                <td>
+                    <c:forEach items="${listBooks}" var="book">
+                        <c:if test="${book.id == tag.bookid}">
+                            ${book.bookTitle}
+                        </c:if>
+                    </c:forEach>
+                </td>
+                <td><a href="<c:url value='/tags/edit/${tag.id}'/>">Edit</a></td>
+                <td><a href="<c:url value='/tags/remove/${tag.id}'/>">Delete</a></td>
+            </tr>
+        </c:forEach>
+    </table>
+</c:if>
+
+
 <br><br><br><br><br><br>
 <h6>@ Designed by Yuriy Kozheurov</h6>
 </body>

@@ -49,30 +49,7 @@
 <body>
 <a href="/manage">Back to main menu</a>
 
-<h1>Users List</h1>
-
-<c:if test="${!empty listUsers}">
-    <table class="tg">
-        <tr>
-            <th width="80">ID</th>
-            <th width="120">username</th>
-            <th width="120">password</th>
-            <th width="60">Edit</th>
-            <th width="60">Delete</th>
-        </tr>
-        <c:forEach items="${listUsers}" var="user">
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.username}</td>
-                <td>${user.password}</td>
-                <td><a href="<c:url value='/users/edit/${user.id}'/>">Edit</a></td>
-                <td><a href="<c:url value='/users/remove/${user.id}'/>">Delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
-
-<h2>Add or Update User Info</h2>
+<h2>Add/Edit User Info</h2>
 
 <c:url var="addAction" value="/users/add"/>
 
@@ -113,19 +90,44 @@
         </tr>
 
         <tr>
-        <td colspan="2">
-            <c:if test="${!empty user.username}">
-                <input type="submit"
-                       value="<spring:message text="Edit Info"/>"/>
-            </c:if>
-            <c:if test="${empty user.username}">
-                <input type="submit"
-                       value="<spring:message text="Add Info"/>"/>
-            </c:if>
-        </td>
+            <td colspan="2">
+                <c:if test="${!empty user.username}">
+                    <input type="submit"
+                           value="<spring:message text="Edit Info"/>"/>
+                </c:if>
+                <c:if test="${empty user.username}">
+                    <input type="submit"
+                           value="<spring:message text="Add Info"/>"/>
+                </c:if>
+            </td>
         </tr>
     </table>
 </form:form>
+
+<h1>Users List</h1>
+
+<c:if test="${!empty listUsers}">
+    <table class="tg">
+        <tr>
+            <th width="80">ID</th>
+            <th width="120">username</th>
+            <th width="120">password</th>
+            <th width="60">Edit</th>
+            <th width="60">Delete</th>
+        </tr>
+        <c:forEach items="${listUsers}" var="user">
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.password}</td>
+                <td><a href="<c:url value='/users/edit/${user.id}'/>">Edit</a></td>
+                <td><a href="<c:url value='/users/remove/${user.id}'/>">Delete</a></td>
+            </tr>
+        </c:forEach>
+    </table>
+</c:if>
+
+
 <br><br><br><br><br><br>
 <h6>@ Designed by Yuriy Kozheurov</h6>
 </body>

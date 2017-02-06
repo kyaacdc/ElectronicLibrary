@@ -49,44 +49,7 @@
 <body>
 <a href="/manage">Back to main menu</a>
 
-<h1>Comments List</h1>
-
-<c:if test="${!empty listComments}">
-    <table class="tg">
-        <tr>
-            <th width="80">ID</th>
-            <th width="120">Description</th>
-            <th width="120">Book</th>
-            <th width="120">User</th>
-            <th width="60">Edit</th>
-            <th width="60">Delete</th>
-        </tr>
-        <c:forEach items="${listComments}" var="comment">
-            <tr>
-                <td>${comment.id}</td>
-                <td>${comment.description}</td>
-                <td>
-                    <c:forEach items="${listBooks}" var="book">
-                        <c:if test="${book.id == comment.bookId}">
-                            ${book.bookTitle}
-                        </c:if>
-                    </c:forEach>
-                </td>
-                <td>
-                    <c:forEach items="${listUsers}" var="user">
-                        <c:if test="${user.id == comment.userId}">
-                            ${user.username}
-                        </c:if>
-                    </c:forEach>
-                </td>
-                <td><a href="<c:url value='/comments/edit/${comment.id}'/>">Edit</a></td>
-                <td><a href="<c:url value='/comments/remove/${comment.id}'/>">Delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
-
-<h2>Add or Update Comment Info</h2>
+<h2>Add/Edit Comment Info</h2>
 
 <c:url var="addAction" value="/comments/add"/>
 
@@ -149,6 +112,45 @@
         </tr>
     </table>
 </form:form>
+
+<h1>Comments List</h1>
+
+<c:if test="${!empty listComments}">
+    <table class="tg">
+        <tr>
+            <th width="80">ID</th>
+            <th width="120">Description</th>
+            <th width="120">Book</th>
+            <th width="120">User</th>
+            <th width="60">Edit</th>
+            <th width="60">Delete</th>
+        </tr>
+        <c:forEach items="${listComments}" var="comment">
+            <tr>
+                <td>${comment.id}</td>
+                <td>${comment.description}</td>
+                <td>
+                    <c:forEach items="${listBooks}" var="book">
+                        <c:if test="${book.id == comment.bookId}">
+                            ${book.bookTitle}
+                        </c:if>
+                    </c:forEach>
+                </td>
+                <td>
+                    <c:forEach items="${listUsers}" var="user">
+                        <c:if test="${user.id == comment.userId}">
+                            ${user.username}
+                        </c:if>
+                    </c:forEach>
+                </td>
+                <td><a href="<c:url value='/comments/edit/${comment.id}'/>">Edit</a></td>
+                <td><a href="<c:url value='/comments/remove/${comment.id}'/>">Delete</a></td>
+            </tr>
+        </c:forEach>
+    </table>
+</c:if>
+
+
 <br><br><br><br><br><br>
 <h6>@ Designed by Yuriy Kozheurov</h6>
 </body>

@@ -106,14 +106,14 @@
     <table class="tg">
         <tr>
             <th width="80">ID</th>
-            <th width="120">Title</th>
-            <th width="120">Author</th>
-            <th width="120">ISBN</th>
-            <th width="80">Description</th>
-            <th width="120">Image</th>
-            <th width="120">Path</th>
-            <th width="120">Likes</th>
-            <th width="120">Dislikes</th>
+            <th width="100">Title</th>
+            <th width="100">Author</th>
+            <th width="80">ISBN</th>
+            <th width="280">Description</th>
+            <th width="150">Image</th>
+            <th width="60">Path</th>
+            <th width="60">Likes</th>
+            <th width="60">Dislikes</th>
         </tr>
         <c:forEach items="${listBooks}" var="book">
             <tr>
