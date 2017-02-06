@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.NestedServletException;
+
+import javax.validation.ConstraintViolationException;
 import java.util.NoSuchElementException;
 
 import static com.el.spring.service.impl.enums.EnumBookSort.getCriteriaByKey;
@@ -48,7 +51,8 @@ public class BookController {
             } else {
                 bookService.updateBook(book);
             }
-        } catch (TransactionSystemException e) {
+        }
+        catch (TransactionSystemException | ConstraintViolationException e) {
             return "errorinput";
         }
 

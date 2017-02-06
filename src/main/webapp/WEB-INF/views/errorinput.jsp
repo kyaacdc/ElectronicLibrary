@@ -11,7 +11,7 @@
     <title>ERROR add/edit info</title>
 </head>
 <body>
-<a href="/books">Back to Admin menu</a>
+<a href="/manage">Back to Admin menu</a>
 <h1>ERROR add/edit info</h1>
 <h2>All names (Authors, Users, Tags) should have only Latin letters (no digits and some another symbols)</h2>
 <h2>ISBN should have only next symbols 0-9, () - </h2>

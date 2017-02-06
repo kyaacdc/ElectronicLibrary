@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.ConstraintViolationException;
+
 @Controller
 public class TagController {
 
@@ -40,7 +42,7 @@ public class TagController {
             } else {
                 tagService.updateTag(tag);
             }
-        } catch (TransactionSystemException e) {
+        } catch (TransactionSystemException  | ConstraintViolationException e) {
             return "errorinput";
         }
 
