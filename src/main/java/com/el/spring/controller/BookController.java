@@ -140,6 +140,18 @@ public class BookController {
         return bookData(id, model);
     }
 
+    @RequestMapping("/showbookrate")
+    public String changeRate(@RequestParam("bookId") int bookId,
+                             Model model)
+    {
+        model.addAttribute("book", bookService.getBookById(bookId));
+        model.addAttribute("listLikes", likeService.getLikesByBook(bookService.getBookById(bookId)));
+        model.addAttribute("listDislikes", likeService.getDislikesByBook(bookService.getBookById(bookId)));
+        model.addAttribute("listUsers", userService.listUsers());
+        return "bookrate";
+    }
+
+
     @RequestMapping("/removeAllBooks")
     public String removeAllBooks(@RequestParam("isRemoveAllBooks") String isRemoveAllBooks, Model model){
 

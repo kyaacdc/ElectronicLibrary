@@ -62,6 +62,11 @@ public class LikeServiceImpl implements LikeService{
     }
 
     @Override
+    public List<Dislike> getDislikesByBook(Book book) {
+        return dislikeDao.findDislikesByBookId(book.getId());
+    }
+
+    @Override
     public List<Like> getLikesByUser(User user) {
         return likeDao.findLikeByUserId(user.getId());
     }

@@ -1,6 +1,7 @@
 package com.el.spring.service;
 
 import com.el.spring.entity.Book;
+import com.el.spring.entity.Dislike;
 import com.el.spring.entity.Like;
 import com.el.spring.entity.User;
 
@@ -13,6 +14,8 @@ public interface LikeService {
     Like getLikeById(int id);
 
     List<Like> getLikesByBook(Book book);
+
+    List<Dislike> getDislikesByBook(Book book);
 
     List<Like> getLikesByUser(User user);
 

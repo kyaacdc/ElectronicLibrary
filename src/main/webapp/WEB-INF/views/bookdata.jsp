@@ -63,6 +63,7 @@
     <th width="120">Path</th>
     <th width="60">Likes</th>
     <th width="60">Dislikes</th>
+    <th width="60">Detail Rate</th>
   </tr>
   <tr>
     <td>${book.id}</td>
@@ -110,6 +111,12 @@
         <input type="hidden" name="islike" value=0>
         <input type="hidden" name="username" value=${pageContext.request.userPrincipal.name}>
         <p><input type="submit" value="OK"></p>
+      </form>
+    </td>
+    <td>
+      <form action="/showbookrate">
+        <input type="hidden" name="bookId" value=${book.id}>
+        <p><input type="submit" value="ShowRate"></p>
       </form>
     </td>
   </tr>
