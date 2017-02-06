@@ -127,8 +127,8 @@
     <table class="tg">
       <tr>
         <th width="40">User</th>
-        <th width="1200">Comment</th>
-        <th width="1200">CommentID</th>
+        <th width="2000">Comment</th>
+        <th width="60">CommentID</th>
       </tr>
       <c:forEach items="${listComments}" var="comment">
         <tr>

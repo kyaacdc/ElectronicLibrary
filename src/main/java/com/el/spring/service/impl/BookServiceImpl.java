@@ -59,7 +59,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book getExactlyBookByTitle(String searchValue) {
         Optional<Book> book = bookDao.findAll().stream()
-                .filter(a -> a.getBookTitle().equals(searchValue))
+                .filter(a -> a.getBookTitle().equalsIgnoreCase(searchValue))
                 .findFirst();
         if(book.isPresent())
             return book.get();
@@ -108,7 +108,7 @@ public class BookServiceImpl implements BookService {
             if(str != null) {
                 String[] split = str.split(" ");
                 for (String s : split) {
-                    if (s.equals(searchValue)) {
+                    if (s.equalsIgnoreCase(searchValue)) {
                         result.add(b);
                         break;
                     }
