@@ -30,6 +30,9 @@ public class BookController {
     @Autowired
     private TagService tagService;
 
+    @Autowired
+    private LikeService likeService;
+
     //Operations with Books
 
     @RequestMapping(value = "books", method = RequestMethod.GET)
@@ -127,10 +130,12 @@ public class BookController {
     @RequestMapping("/changeRate")
     public String changeRate(@RequestParam("id") int id,
                              @RequestParam("islike") int islike,
+                             @RequestParam("username") String username,
                              @RequestParam("setRate") int setRate,
                              Model model)
     {
         bookService.changeRate(id, islike, setRate);
+        likeService.saveLike(islike, bookService.getBookById(id), userService.findByUsername(username), setRate);
         model.addAttribute("listComments", commentService.listCommentsByBookReversed(id));
         return bookData(id, model);
     }
@@ -144,5 +149,4 @@ public class BookController {
 
         return "redirect:/books";
     }
-
 }

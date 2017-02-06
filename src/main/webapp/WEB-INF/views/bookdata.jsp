@@ -54,11 +54,11 @@
 
 <table class="tg">
   <tr>
-    <th width="80">ID</th>
+    <th width="30">ID</th>
     <th width="100">Title</th>
     <th width="100">Author</th>
     <th width="80">ISBN</th>
-    <th width="200">Description</th>
+    <th width="300">Description</th>
     <th width="120">Image</th>
     <th width="120">Path</th>
     <th width="60">Likes</th>
@@ -91,6 +91,7 @@
         </p>
         <input type="hidden" name="id" value=${book.id}>
         <input type="hidden" name="islike" value=1>
+        <input type="hidden" name="username" value=${pageContext.request.userPrincipal.name}>
         <p><input type="submit" value="OK"></p>
       </form>
     </td>
@@ -107,6 +108,7 @@
         </p>
         <input type="hidden" name="id" value=${book.id}>
         <input type="hidden" name="islike" value=0>
+        <input type="hidden" name="username" value=${pageContext.request.userPrincipal.name}>
         <p><input type="submit" value="OK"></p>
       </form>
     </td>

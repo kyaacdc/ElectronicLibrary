@@ -219,11 +219,11 @@
 <c:if test="${!empty listBooks}">
     <table class="tg">
         <tr>
-            <th width="40">ID</th>
+            <th width="30">ID</th>
             <th width="120">Title</th>
             <th width="120">Author</th>
             <th width="100">ISBN</th>
-            <th width="280">Description</th>
+            <th width="300">Description</th>
             <th width="80">Image</th>
             <th width="80">Path</th>
             <th width="40">Likes</th>

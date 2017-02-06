@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 public class TagServiceImpl implements TagService{
 
     @Autowired
-    TagDao tagDao;
+    private TagDao tagDao;
 
     @Override
     @Transactional

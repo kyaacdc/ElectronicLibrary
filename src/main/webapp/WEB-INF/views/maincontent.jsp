@@ -105,11 +105,11 @@
 <c:if test="${!empty listBooks}">
     <table class="tg">
         <tr>
-            <th width="80">ID</th>
+            <th width="30">ID</th>
             <th width="100">Title</th>
             <th width="100">Author</th>
             <th width="80">ISBN</th>
-            <th width="280">Description</th>
+            <th width="300">Description</th>
             <th width="150">Image</th>
             <th width="60">Path</th>
             <th width="60">Likes</th>

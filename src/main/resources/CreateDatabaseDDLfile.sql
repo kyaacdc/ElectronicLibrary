@@ -17,6 +17,20 @@ CREATE TABLE comments
   bookid INT(11),
   description TEXT
 );
+CREATE TABLE dislikes
+(
+  id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  book_id INT(11),
+  user_id INT(11),
+  amount INT(11)
+);
+CREATE TABLE likes
+(
+  id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  book_id INT(11),
+  user_id INT(11),
+  amount INT(11)
+);
 CREATE TABLE roles
 (
   id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
