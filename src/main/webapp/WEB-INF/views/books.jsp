@@ -228,6 +228,7 @@
             <th width="80">Path</th>
             <th width="40">Likes</th>
             <th width="40">Dislikes</th>
+            <th width="40">Tags</th>
             <th width="40">Edit</th>
             <th width="40">Delete</th>
         </tr>
@@ -264,6 +265,13 @@
                 </td>
                 <td>${book.likes}</td>
                 <td>${book.dislikes}</td>
+                <td>
+                    <c:forEach items="${listTags}" var="tag">
+                        <c:if test="${tag.bookid == book.id}">
+                            ${tag.tagname}
+                        </c:if>
+                    </c:forEach>
+                </td>
                 <td><a href="<c:url value='/edit/${book.id}'/>">Edit</a></td>
                 <td><a href="<c:url value='/remove/${book.id}'/>">Delete</a></td>
             </tr>

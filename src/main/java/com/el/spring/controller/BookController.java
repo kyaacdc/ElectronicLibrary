@@ -27,12 +27,16 @@ public class BookController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TagService tagService;
+
     //Operations with Books
 
     @RequestMapping(value = "books", method = RequestMethod.GET)
     public String listBooks(Model model){
         model.addAttribute("book", new Book());
         model.addAttribute("listBooks", bookService.listBooks());
+        model.addAttribute("listTags", tagService.listTags());
         return "books";
     }
 
