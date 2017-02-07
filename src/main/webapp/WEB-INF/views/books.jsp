@@ -180,26 +180,6 @@
             </td>
         </tr>
         <tr>
-            <td>
-                <form:label path="likes">
-                    <spring:message text="Likes"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="likes"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="dislikes">
-                    <spring:message text="Dislikes"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="dislikes"/>
-            </td>
-        </tr>
-        <tr>
             <td colspan="2">
                 <c:if test="${!empty book.bookTitle}">
                     <input type="submit"

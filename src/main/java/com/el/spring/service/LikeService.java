@@ -15,4 +15,12 @@ public interface LikeService {
 
     List<Dislike> getDislikesByBook(Book book);
 
+    List<Like> listLikes();
+
+    List<Dislike> listDislikes();
+
+    void removeLike(int id);
+
+    void removeDislike(int id);
+
 }

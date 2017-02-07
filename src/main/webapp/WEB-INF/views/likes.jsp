@@ -1,12 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" %>
-
 <html>
 <head>
-    <title>BookData</title>
+    <title>Tags Page</title>
 
     <style type="text/css">
         .tg {
@@ -46,23 +45,34 @@
             background-color: #f9f9f9
         }
     </style>
-
 </head>
 <body>
-<a href="/maincontent">Back to Book menu</a>
+<a href="/manage">Back to admin menu</a>
 
-<h1>${book.bookTitle}</h1>
+<h2>Manage Rate Info</h2>
+
 
 <h1>Book Rating - Likes</h1>
 
 <table class="tg">
     <tr>
+        <th width="100">LikeId</th>
+        <th width="100">BookTitle</th>
         <th width="100">Username</th>
         <th width="100">Likes</th>
+        <th width="60">Delete</th>
     </tr>
 
     <c:forEach items="${listLikes}" var="like">
         <tr>
+            <td>${like.id}</td>
+            <td>
+                <c:forEach items="${listBooks}" var="book">
+                    <c:if test="${like.bookId == book.id}">
+                        ${book.bookTitle}
+                    </c:if>
+                </c:forEach>
+            </td>
             <td>
                 <c:forEach items="${listUsers}" var="user">
                     <c:if test="${like.userId == user.id}">
@@ -71,6 +81,14 @@
                 </c:forEach>
             </td>
             <td>${like.amount}</td>
+            <td>
+                <form action="<c:url value='/likes/remove/${like.id}'/>">
+                    <input type="hidden" name="islike" value=1>
+                    <input type="hidden" name="bookId" value=${like.bookId}>
+                    <input type="hidden" name="userId" value=${like.userId}>
+                    <p><input type="submit" value="Delete"></p>
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>
@@ -79,12 +97,23 @@
 
 <table class="tg">
     <tr>
+        <th width="100">DislikeId</th>
+        <th width="100">BookTitle</th>
         <th width="100">Username</th>
         <th width="100">Dislikes</th>
+        <th width="60">Delete</th>
     </tr>
 
     <c:forEach items="${listDislikes}" var="dislike">
         <tr>
+            <td>${dislike.id}</td>
+            <td>
+                <c:forEach items="${listBooks}" var="book">
+                    <c:if test="${dislike.bookId == book.id}">
+                        ${book.bookTitle}
+                    </c:if>
+                </c:forEach>
+            </td>
             <td>
                 <c:forEach items="${listUsers}" var="user">
                     <c:if test="${dislike.userId == user.id}">
@@ -93,6 +122,14 @@
                 </c:forEach>
             </td>
             <td>${dislike.amount}</td>
+            <td>
+                <form action="<c:url value='/likes/remove/${dislike.id}'/>">
+                    <input type="hidden" name="islike" value=0>
+                    <input type="hidden" name="bookId" value=${dislike.bookId}>
+                    <input type="hidden" name="userId" value=${dislike.userId}>
+                    <p><input type="submit" value="Delete"></p>
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>
@@ -102,3 +139,4 @@
 
 </body>
 </html>
+

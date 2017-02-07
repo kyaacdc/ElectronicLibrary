@@ -24,12 +24,14 @@
     <br><br>
     <a href="<c:url value="/maincontent"/>" ><h4>View Books</h4></a><br><br><br>
     <a href="<c:url value="/books"/>"><h4>Manage Books</h4></a>
-    <br><br><br>
+    <br><br>
     <a href="<c:url value="/users"/>"><h4>Manage Users</h4></a>
-    <br><br><br>
+    <br><br>
     <a href="<c:url value="/tags"/>"><h4>Manage Tags</h4></a>
-    <br><br><br>
+    <br><br>
     <a href="<c:url value="/comments"/>"><h4>Manage Comments</h4></a>
+    <br><br>
+    <a href="<c:url value="/likes"/>"><h4>Manage Books Rate</h4></a>
 
 </div>
 <br><br><br><br><br><br>

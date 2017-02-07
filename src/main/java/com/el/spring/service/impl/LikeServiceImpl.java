@@ -66,4 +66,24 @@ public class LikeServiceImpl implements LikeService{
                 .sorted(Comparator.comparing(Dislike::getAmount).reversed())
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Like> listLikes() {
+        return likeDao.findAll();
+    }
+
+    @Override
+    public List<Dislike> listDislikes() {
+        return dislikeDao.findAll();
+    }
+
+    @Override
+    public void removeLike(int id) {
+        likeDao.delete(id);
+    }
+
+    @Override
+    public void removeDislike(int id) {
+        dislikeDao.delete(id);
+    }
 }
