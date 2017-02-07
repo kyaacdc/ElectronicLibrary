@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -55,15 +56,15 @@ public class LikeServiceImpl implements LikeService{
 
     @Override
     public List<Like> getLikesByBook(Book book) {
-        List<Like> likesByBookId = likeDao.findLikesByBookId(book.getId());
-        Collections.reverse(likesByBookId);
-        return likesByBookId;
+        return likeDao.findLikesByBookId(book.getId()).stream()
+                .sorted(Comparator.comparing(Like::getAmount).reversed())
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Dislike> getDislikesByBook(Book book) {
-        List<Dislike> dislikesByBookId = dislikeDao.findDislikesByBookId(book.getId());
-        Collections.reverse(dislikesByBookId);
-        return dislikesByBookId;
+        return dislikeDao.findDislikesByBookId(book.getId()).stream()
+                .sorted(Comparator.comparing(Dislike::getAmount).reversed())
+                .collect(Collectors.toList());
     }
 }
