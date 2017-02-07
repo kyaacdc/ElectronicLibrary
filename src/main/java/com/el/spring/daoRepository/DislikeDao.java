@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface DislikeDao extends JpaRepository<Dislike, Integer> {
     List<Dislike> findDislikesByBookId(int bookId);
-
 }

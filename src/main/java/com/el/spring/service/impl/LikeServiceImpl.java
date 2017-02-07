@@ -11,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LikeServiceImpl implements LikeService{
@@ -27,6 +28,7 @@ public class LikeServiceImpl implements LikeService{
     @Override
     @Transactional
     public void saveLike(int isLike, Book book, User user, int amount) {
+
         if(isLike == 1) {
             Optional<Like> likeOptional = likeDao.findAll().stream()
                     .filter(a -> a.getBookId() == book.getId() && a.getUserId() == user.getId())
@@ -52,34 +54,16 @@ public class LikeServiceImpl implements LikeService{
     }
 
     @Override
-    public Like getLikeById(int id) {
-        return likeDao.findOne(id);
-    }
-
-    @Override
     public List<Like> getLikesByBook(Book book) {
-        return likeDao.findLikesByBookId(book.getId());
+        List<Like> likesByBookId = likeDao.findLikesByBookId(book.getId());
+        Collections.reverse(likesByBookId);
+        return likesByBookId;
     }
 
     @Override
     public List<Dislike> getDislikesByBook(Book book) {
-        return dislikeDao.findDislikesByBookId(book.getId());
-    }
-
-    @Override
-    public List<Like> getLikesByUser(User user) {
-        return likeDao.findLikeByUserId(user.getId());
-    }
-
-    @Override
-    public int getLikesByBookAndUser(Book book, User user) {
-        return likeDao.findAll().stream()
-                .filter(a -> a.getBookId() == book.getId() && a.getUserId() == user.getId())
-                .distinct().findFirst().map(Like::getAmount).orElse(0);
-    }
-
-    @Override
-    public List<Like> listLikes() {
-        return likeDao.findAll();
+        List<Dislike> dislikesByBookId = dislikeDao.findDislikesByBookId(book.getId());
+        Collections.reverse(dislikesByBookId);
+        return dislikesByBookId;
     }
 }

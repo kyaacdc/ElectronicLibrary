@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface LikeDao extends JpaRepository<Like, Integer>{
     List<Like> findLikesByBookId(int bookId);
-    List<Like> findLikeByUserId(int userId);
 }

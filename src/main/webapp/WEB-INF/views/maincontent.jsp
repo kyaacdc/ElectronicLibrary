@@ -114,7 +114,6 @@
             <th width="60">Path</th>
             <th width="60">Likes</th>
             <th width="60">Dislikes</th>
-            <th width="60">Dislikes</th>
             <th width="60">Detail Rate</th>
         </tr>
         <c:forEach items="${listBooks}" var="book">

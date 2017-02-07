@@ -11,16 +11,8 @@ public interface LikeService {
 
     void saveLike(int islike, Book book, User user, int amount);
 
-    Like getLikeById(int id);
-
     List<Like> getLikesByBook(Book book);
 
     List<Dislike> getDislikesByBook(Book book);
-
-    List<Like> getLikesByUser(User user);
-
-    int getLikesByBookAndUser(Book book, User user);
-
-    List<Like> listLikes();
 
 }
