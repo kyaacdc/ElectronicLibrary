@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface LikeService {
 
-    void saveLike(int islike, Book book, User user, int amount);
+    void saveLike(boolean islike, Book book, User user, int amount);
 
     List<Like> getLikesByBook(Book book);
 

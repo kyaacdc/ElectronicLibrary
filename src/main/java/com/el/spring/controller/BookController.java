@@ -134,8 +134,9 @@ public class BookController {
                              @RequestParam("setRate") int setRate,
                              Model model)
     {
+        boolean isLike = (islike == 1);
         bookService.changeRate(id, islike, setRate);
-        likeService.saveLike(islike, bookService.getBookById(id), userService.findByUsername(username), setRate);
+        likeService.saveLike(isLike, bookService.getBookById(id), userService.findByUsername(username), setRate);
         model.addAttribute("listComments", commentService.listCommentsByBookReversed(id));
         return bookData(id, model);
     }
