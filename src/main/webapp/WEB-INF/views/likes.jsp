@@ -52,87 +52,94 @@
 <h2>Manage Rate Info</h2>
 
 
-<h1>Book Rating - Likes</h1>
+<h1>Book Rating - Likes / Dislikes</h1>
 
-<table class="tg">
+<table>
     <tr>
-        <th width="100">LikeId</th>
-        <th width="100">BookTitle</th>
-        <th width="100">Username</th>
-        <th width="100">Likes</th>
-        <th width="60">Delete</th>
-    </tr>
+        <td valign="top">
+            <table class="tg">
+                <tr>
+                    <th width="100">LikeId</th>
+                    <th width="100">BookTitle</th>
+                    <th width="100">Username</th>
+                    <th width="100">Likes</th>
+                    <th width="60">Delete</th>
+                </tr>
 
-    <c:forEach items="${listLikes}" var="like">
-        <tr>
-            <td>${like.id}</td>
-            <td>
-                <c:forEach items="${listBooks}" var="book">
-                    <c:if test="${like.bookId == book.id}">
-                        ${book.bookTitle}
-                    </c:if>
+                <c:forEach items="${listLikes}" var="like">
+                    <tr>
+                        <td>${like.id}</td>
+                        <td>
+                            <c:forEach items="${listBooks}" var="book">
+                                <c:if test="${like.bookId == book.id}">
+                                    ${book.bookTitle}
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:forEach items="${listUsers}" var="user">
+                                <c:if test="${like.userId == user.id}">
+                                    ${user.username}
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>${like.amount}</td>
+                        <td>
+                            <form action="<c:url value='/likes/remove/${like.id}'/>">
+                                <input type="hidden" name="islike" value=1>
+                                <input type="hidden" name="bookId" value=${like.bookId}>
+                                <input type="hidden" name="userId" value=${like.userId}>
+                                <p><input type="submit" value="Delete"></p>
+                            </form>
+                        </td>
+                    </tr>
                 </c:forEach>
-            </td>
-            <td>
-                <c:forEach items="${listUsers}" var="user">
-                    <c:if test="${like.userId == user.id}">
-                        ${user.username}
-                    </c:if>
+            </table>
+        </td>
+
+        <td valign="top">
+            <table class="tg">
+                <tr>
+                    <th width="100">DislikeId</th>
+                    <th width="100">BookTitle</th>
+                    <th width="100">Username</th>
+                    <th width="100">Dislikes</th>
+                    <th width="60">Delete</th>
+                </tr>
+
+                <c:forEach items="${listDislikes}" var="dislike">
+                    <tr>
+                        <td>${dislike.id}</td>
+                        <td>
+                            <c:forEach items="${listBooks}" var="book">
+                                <c:if test="${dislike.bookId == book.id}">
+                                    ${book.bookTitle}
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:forEach items="${listUsers}" var="user">
+                                <c:if test="${dislike.userId == user.id}">
+                                    ${user.username}
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>${dislike.amount}</td>
+                        <td>
+                            <form action="<c:url value='/likes/remove/${dislike.id}'/>">
+                                <input type="hidden" name="islike" value=0>
+                                <input type="hidden" name="bookId" value=${dislike.bookId}>
+                                <input type="hidden" name="userId" value=${dislike.userId}>
+                                <p><input type="submit" value="Delete"></p>
+                            </form>
+                        </td>
+                    </tr>
                 </c:forEach>
-            </td>
-            <td>${like.amount}</td>
-            <td>
-                <form action="<c:url value='/likes/remove/${like.id}'/>">
-                    <input type="hidden" name="islike" value=1>
-                    <input type="hidden" name="bookId" value=${like.bookId}>
-                    <input type="hidden" name="userId" value=${like.userId}>
-                    <p><input type="submit" value="Delete"></p>
-                </form>
-            </td>
-        </tr>
-    </c:forEach>
+            </table>
+        </td>
+    </tr>
 </table>
 
-<h1>Book Rating - Dislikes</h1>
-
-<table class="tg">
-    <tr>
-        <th width="100">DislikeId</th>
-        <th width="100">BookTitle</th>
-        <th width="100">Username</th>
-        <th width="100">Dislikes</th>
-        <th width="60">Delete</th>
-    </tr>
-
-    <c:forEach items="${listDislikes}" var="dislike">
-        <tr>
-            <td>${dislike.id}</td>
-            <td>
-                <c:forEach items="${listBooks}" var="book">
-                    <c:if test="${dislike.bookId == book.id}">
-                        ${book.bookTitle}
-                    </c:if>
-                </c:forEach>
-            </td>
-            <td>
-                <c:forEach items="${listUsers}" var="user">
-                    <c:if test="${dislike.userId == user.id}">
-                        ${user.username}
-                    </c:if>
-                </c:forEach>
-            </td>
-            <td>${dislike.amount}</td>
-            <td>
-                <form action="<c:url value='/likes/remove/${dislike.id}'/>">
-                    <input type="hidden" name="islike" value=0>
-                    <input type="hidden" name="bookId" value=${dislike.bookId}>
-                    <input type="hidden" name="userId" value=${dislike.userId}>
-                    <p><input type="submit" value="Delete"></p>
-                </form>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
 
 <br><br><br><br><br><br>
 <h6>@ Designed by Yuriy Kozheurov</h6>

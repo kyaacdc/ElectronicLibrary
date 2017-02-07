@@ -53,52 +53,60 @@
 
 <h1>${book.bookTitle}</h1>
 
-<h1>Book Rating - Likes</h1>
+<h1>Book Rating - Likes / Dislikes</h1>
 
-<table class="tg">
+<table>
     <tr>
-        <th width="100">Username</th>
-        <th width="100">Likes</th>
-        <th width="40">Like_ID</th>
-    </tr>
 
-    <c:forEach items="${listLikes}" var="like">
-        <tr>
-            <td>
-                <c:forEach items="${listUsers}" var="user">
-                    <c:if test="${like.userId == user.id}">
-                        ${user.username}
-                    </c:if>
+        <td valign="top">
+            <table class="tg">
+                <tr>
+                    <th width="100">Username</th>
+                    <th width="100">Likes</th>
+                    <th width="40">Like_ID</th>
+                </tr>
+
+                <c:forEach items="${listLikes}" var="like">
+                    <tr>
+                        <td>
+                            <c:forEach items="${listUsers}" var="user">
+                                <c:if test="${like.userId == user.id}">
+                                    ${user.username}
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>${like.amount}</td>
+                        <td>${like.id}</td>
+                    </tr>
                 </c:forEach>
-            </td>
-            <td>${like.amount}</td>
-            <td>${like.id}</td>
-        </tr>
-    </c:forEach>
-</table>
+            </table>
+        </td>
 
-<h1>Book Rating - Dislikes</h1>
+        <td valign="top">
+            <table class="tg">
+                <tr>
+                    <th width="100">Username</th>
+                    <th width="100">Dislikes</th>
+                    <th width="40">Dislike_ID</th>
+                </tr>
 
-<table class="tg">
-    <tr>
-        <th width="100">Username</th>
-        <th width="100">Dislikes</th>
-        <th width="40">Dislike_ID</th>
-    </tr>
-
-    <c:forEach items="${listDislikes}" var="dislike">
-        <tr>
-            <td>
-                <c:forEach items="${listUsers}" var="user">
-                    <c:if test="${dislike.userId == user.id}">
-                        ${user.username}
-                    </c:if>
+                <c:forEach items="${listDislikes}" var="dislike">
+                    <tr>
+                        <td>
+                            <c:forEach items="${listUsers}" var="user">
+                                <c:if test="${dislike.userId == user.id}">
+                                    ${user.username}
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>${dislike.amount}</td>
+                        <td>${dislike.id}</td>
+                    </tr>
                 </c:forEach>
-            </td>
-            <td>${dislike.amount}</td>
-            <td>${dislike.id}</td>
-        </tr>
-    </c:forEach>
+            </table>
+        </td>
+
+    </tr>
 </table>
 
 <br><br><br><br><br><br>

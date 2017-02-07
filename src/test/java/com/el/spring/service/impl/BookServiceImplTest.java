@@ -39,7 +39,7 @@ public class BookServiceImplTest {
 
         assertThat(book.getBookTitle(), is(equalTo("book111")));
 
-        bookService.removeBook(book.getId());
+        bookService.removeAllBooks();
     }
 
     @Test
@@ -55,7 +55,7 @@ public class BookServiceImplTest {
 
         assertTrue(bookService.getBookByBookTitle("book222").getId() == id);
 
-        bookService.removeBook(id);
+        bookService.removeAllBooks();
     }
 
     @Test
@@ -67,6 +67,7 @@ public class BookServiceImplTest {
         bookService.removeBook(id);
 
         assertThat(bookService.getBookById(id), is (nullValue()));
+        bookService.removeAllBooks();
     }
 
     @Test
@@ -88,7 +89,7 @@ public class BookServiceImplTest {
 
         assertTrue(bookService.getBookById(id).getBookTitle().equals("book111"));
 
-        bookService.removeBook(id);
+        bookService.removeAllBooks();
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -97,6 +98,8 @@ public class BookServiceImplTest {
         book.setBookTitle("book111");
         bookService.addBook(book);
         bookService.getExactlyBookByTitle("xxxxx123");
+
+        bookService.removeAllBooks();
     }
 
     @Test
@@ -107,6 +110,9 @@ public class BookServiceImplTest {
         book = bookService.getExactlyBookByTitle("book111");
 
         assertTrue(book.getBookTitle().equals("book111"));
+
+        bookService.removeAllBooks();
+
     }
 
     @Test
