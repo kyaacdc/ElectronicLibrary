@@ -7,7 +7,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.el.electroniclibrary">
+    <logger name="com.el.spring">
         <level value="debug"/>
     </logger>
 
